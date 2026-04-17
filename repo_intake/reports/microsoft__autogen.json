@@ -1,0 +1,33 @@
+{
+  "repo": "microsoft/autogen",
+  "url": "https://github.com/microsoft/autogen.git",
+  "status": "extracted",
+  "copied_count": 23,
+  "copied_files": [
+    "docs/switcher.json",
+    "docs/design/01 - Programming Model.md",
+    "docs/design/02 - Topics.md",
+    "docs/design/03 - Agent Worker Protocol.md",
+    "docs/design/04 - Agent and Topic ID Specs.md",
+    "docs/design/05 - Services.md",
+    "docs/design/readme.md",
+    "docs/dotnet/.gitignore",
+    "docs/dotnet/docfx.json",
+    "docs/dotnet/index.md",
+    "docs/dotnet/README.md",
+    "docs/dotnet/toc.yml",
+    "docs/dotnet/core/differences-from-python.md",
+    "docs/dotnet/core/index.md",
+    "docs/dotnet/core/installation.md",
+    "docs/dotnet/core/protobuf-message-types.md",
+    "docs/dotnet/core/toc.yml",
+    "docs/dotnet/core/tutorial.md",
+    "docs/dotnet/images/favicon.ico",
+    "docs/dotnet/images/logo.svg",
+    "docs/dotnet/template/public/main.css",
+    "docs/dotnet/template/public/main.js",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\microsoft__autogen'...\nUpdating files:  28% (526/1837)\nUpdating files:  29% (533/1837)\nUpdating files:  30% (552/1837)\nUpdating files:  31% (570/1837)\nUpdating files:  32% (588/1837)\nUpdating files:  33% (607/1837)\nUpdating files:  34% (625/1837)\nUpdating files:  35% (643/1837)\nUpdating files:  36% (662/1837)\nUpdating files:  37% (680/1837)\nUpdating files:  38% (699/1837)\nUpdating files:  39% (717/1837)\nUpdating files:  40% (735/1837)\nUpdating files:  41% (754/1837)\nUpdating files:  42% (772/1837)\nUpdating files:  43% (790/1837)\nUpdating files:  44% (809/1837)\nUpdating files:  45% (827/1837)\nUpdating files:  46% (846/1837)\nUpdating files:  47% (864/1837)\nUpdating files:  48% (882/1837)\nUpdating files:  49% (901/1837)\nUpdating files:  50% (919/1837)\nUpdating files:  51% (937/1837)\nUpdating files:  52% (956/1837)\nUpdating files:  53% (974/1837)\nUpdating files:  54% (992/1837)\nUpdating files:  55% (1011/1837)\nUpdating files:  56% (1029/1837)\nUpdating files:  57% (1048/1837)\nUpdating files:  58% (1066/1837)\nUpdating files:  59% (1084/1837)\nUpdating files:  60% (1103/1837)\nUpdating files:  61% (1121/1837)\nUpdating files:  62% (1139/1837)\nUpdating files:  63% (1158/1837)\nUpdating files:  64% (1176/1837)\nUpdating files:  65% (1195/1837)\nUpdating files:  66% (1213/1837)\nUpdating files:  67% (1231/1837)\nUpdating files:  68% (1250/1837)\nUpdating files:  69% (1268/1837)\nUpdating files:  70% (1286/1837)\nUpdating files:  71% (1305/1837)\nUpdating files:  72% (1323/1837)\nUpdating files:  73% (1342/1837)\nUpdating files:  74% (1360/1837)\nUpdating files:  75% (1378/1837)\nUpdating files:  76% (1397/1837)\nUpdating files:  77% (1415/1837)\nUpdating files:  78% (1433/1837)\nUpdating files:  79% (1452/1837)\nUpdating files:  80% (1470/1837)\nUpdating files:  81% (1488/1837)\nUpdating files:  82% (1507/1837)\nUpdating files:  83% (1525/1837)\nUpdating files:  83% (1528/1837)\nUpdating files:  84% (1544/1837)\nUpdating files:  85% (1562/1837)\nUpdating files:  86% (1580/1837)\nUpdating files:  87% (1599/1837)\nUpdating files:  88% (1617/1837)\nUpdating files:  89% (1635/1837)\nUpdating files:  90% (1654/1837)\nUpdating files:  91% (1672/1837)\nUpdating files:  92% (1691/1837)\nUpdating files:  93% (1709/1837)\nUpdating files:  94% (1727/1837)\nUpdating files:  95% (1746/1837)\nUpdating files:  96% (1764/1837)\nUpdating files:  97% (1782/1837)\nUpdating files:  98% (1801/1837)\nUpdating files:  99% (1819/1837)\nUpdating files: 100% (1837/1837)\nUpdating files: 100% (1837/1837), done.\nFiltering content:   4% (2/48)\nFiltering content:   6% (3/48)\nFiltering content:   8% (4/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  10% (5/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  12% (6/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  14% (7/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  16% (8/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  18% (9/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  20% (10/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  22% (11/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  25% (12/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  27% (13/48), 906.18 KiB | 856.00 KiB/s\nFiltering content:  29% (14/48), 6.18 MiB | 4.66 MiB/s    \nFiltering content:  31% (15/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  33% (16/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  35% (17/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  37% (18/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  39% (19/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  41% (20/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  43% (21/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  45% (22/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  47% (23/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  50% (24/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  52% (25/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  54% (26/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  56% (27/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  58% (28/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  60% (29/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  62% (30/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  64% (31/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  66% (32/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  68% (33/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  70% (34/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  72% (35/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  75% (36/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  77% (37/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  79% (38/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  81% (39/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  83% (40/48), 6.18 MiB | 4.66 MiB/s\nFiltering content:  85% (41/48), 9.21 MiB | 5.05 MiB/s\nFiltering content:  87% (42/48), 9.21 MiB | 5.05 MiB/s\nFiltering content:  89% (43/48), 9.21 MiB | 5.05 MiB/s\nFiltering content:  91% (44/48), 9.21 MiB | 5.05 MiB/s\nFiltering content:  93% (45/48), 9.21 MiB | 5.05 MiB/s\nFiltering content:  95% (46/48), 9.21 MiB | 5.05 MiB/s\nFiltering content:  97% (47/48), 9.21 MiB | 5.05 MiB/s\nFiltering content: 100% (48/48), 9.21 MiB | 5.05 MiB/s\nFiltering content: 100% (48/48), 9.22 MiB | 3.18 MiB/s, done."
+}

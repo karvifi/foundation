@@ -1,0 +1,12 @@
+{
+  "repo": "trpc/trpc",
+  "url": "https://github.com/trpc/trpc.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\trpc__trpc'...\nUpdating files:  68% (1077/1573)\nUpdating files:  69% (1086/1573)\nUpdating files:  70% (1102/1573)\nUpdating files:  71% (1117/1573)\nUpdating files:  72% (1133/1573)\nUpdating files:  73% (1149/1573)\nUpdating files:  74% (1165/1573)\nUpdating files:  75% (1180/1573)\nUpdating files:  76% (1196/1573)\nUpdating files:  77% (1212/1573)\nUpdating files:  78% (1227/1573)\nUpdating files:  79% (1243/1573)\nUpdating files:  80% (1259/1573)\nUpdating files:  81% (1275/1573)\nUpdating files:  82% (1290/1573)\nUpdating files:  83% (1306/1573)\nUpdating files:  84% (1322/1573)\nUpdating files:  85% (1338/1573)\nUpdating files:  86% (1353/1573)\nUpdating files:  87% (1369/1573)\nUpdating files:  88% (1385/1573)\nUpdating files:  89% (1400/1573)\nUpdating files:  90% (1416/1573)\nUpdating files:  91% (1432/1573)\nUpdating files:  92% (1448/1573)\nUpdating files:  93% (1463/1573)\nUpdating files:  94% (1479/1573)\nUpdating files:  95% (1495/1573)\nUpdating files:  96% (1511/1573)\nUpdating files:  97% (1526/1573)\nUpdating files:  98% (1542/1573)\nUpdating files:  99% (1558/1573)\nUpdating files: 100% (1573/1573)\nUpdating files: 100% (1573/1573), done."
+}

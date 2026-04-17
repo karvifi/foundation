@@ -1,0 +1,12 @@
+{
+  "repo": "node-red/node-red",
+  "url": "https://github.com/node-red/node-red.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\node-red__node-red'...\nUpdating files:  68% (1020/1493)\nUpdating files:  69% (1031/1493)\nUpdating files:  70% (1046/1493)\nUpdating files:  71% (1061/1493)\nUpdating files:  72% (1075/1493)\nUpdating files:  73% (1090/1493)\nUpdating files:  74% (1105/1493)\nUpdating files:  75% (1120/1493)\nUpdating files:  76% (1135/1493)\nUpdating files:  77% (1150/1493)\nUpdating files:  78% (1165/1493)\nUpdating files:  79% (1180/1493)\nUpdating files:  80% (1195/1493)\nUpdating files:  81% (1210/1493)\nUpdating files:  82% (1225/1493)\nUpdating files:  83% (1240/1493)\nUpdating files:  84% (1255/1493)\nUpdating files:  85% (1270/1493)\nUpdating files:  86% (1284/1493)\nUpdating files:  87% (1299/1493)\nUpdating files:  88% (1314/1493)\nUpdating files:  89% (1329/1493)\nUpdating files:  90% (1344/1493)\nUpdating files:  91% (1359/1493)\nUpdating files:  92% (1374/1493)\nUpdating files:  93% (1389/1493)\nUpdating files:  94% (1404/1493)\nUpdating files:  95% (1419/1493)\nUpdating files:  96% (1434/1493)\nUpdating files:  97% (1449/1493)\nUpdating files:  98% (1464/1493)\nUpdating files:  99% (1479/1493)\nUpdating files: 100% (1493/1493)\nUpdating files: 100% (1493/1493), done."
+}

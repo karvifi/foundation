@@ -1,0 +1,12 @@
+{
+  "repo": "Mintplex-Labs/anything-llm",
+  "url": "https://github.com/Mintplex-Labs/anything-llm.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\Mintplex-Labs__anything-llm'...\nUpdating files:  76% (979/1279)\nUpdating files:  77% (985/1279)\nUpdating files:  78% (998/1279)\nUpdating files:  79% (1011/1279)\nUpdating files:  80% (1024/1279)\nUpdating files:  81% (1036/1279)\nUpdating files:  82% (1049/1279)\nUpdating files:  83% (1062/1279)\nUpdating files:  84% (1075/1279)\nUpdating files:  85% (1088/1279)\nUpdating files:  86% (1100/1279)\nUpdating files:  87% (1113/1279)\nUpdating files:  88% (1126/1279)\nUpdating files:  89% (1139/1279)\nUpdating files:  90% (1152/1279)\nUpdating files:  91% (1164/1279)\nUpdating files:  92% (1177/1279)\nUpdating files:  93% (1190/1279)\nUpdating files:  94% (1203/1279)\nUpdating files:  95% (1216/1279)\nUpdating files:  96% (1228/1279)\nUpdating files:  97% (1241/1279)\nUpdating files:  98% (1254/1279)\nUpdating files:  99% (1267/1279)\nUpdating files: 100% (1279/1279)\nUpdating files: 100% (1279/1279), done."
+}

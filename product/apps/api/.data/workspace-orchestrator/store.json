@@ -1,0 +1,132 @@
+{
+  "sessions": [
+    {
+      "id": "wss_1776440892088_1",
+      "workspaceId": "ws_demo",
+      "patternId": "sales_workspace",
+      "createdAt": "2026-04-17T15:48:12.088Z"
+    },
+    {
+      "id": "wss_1776442190909_1",
+      "workspaceId": "ws_demo",
+      "patternId": "sales_workspace",
+      "createdAt": "2026-04-17T16:09:50.909Z"
+    },
+    {
+      "id": "wss_1776445611676_1",
+      "workspaceId": "ws_demo",
+      "patternId": "sales_workspace",
+      "createdAt": "2026-04-17T17:06:51.676Z"
+    },
+    {
+      "id": "wss_1776445620003_3",
+      "workspaceId": "ws_demo",
+      "patternId": "sales_workspace",
+      "createdAt": "2026-04-17T17:07:00.003Z"
+    },
+    {
+      "id": "wss_1776446099787_1",
+      "workspaceId": "ws_demo",
+      "patternId": "sales_workspace",
+      "createdAt": "2026-04-17T17:14:59.787Z"
+    },
+    {
+      "id": "wss_1776446366189_3",
+      "workspaceId": "ws_demo",
+      "patternId": "sales_workspace",
+      "createdAt": "2026-04-17T17:19:26.189Z"
+    }
+  ],
+  "eventsBySession": {
+    "wss_1776440892088_1": [
+      {
+        "id": "evt_1776440892106_2",
+        "workspaceId": "ws_demo",
+        "sessionId": "wss_1776440892088_1",
+        "sourceEngineId": "crm",
+        "type": "record.selected",
+        "payload": {
+          "entityType": "company",
+          "entityId": "co_persist",
+          "selectedLabel": "Persist Corp"
+        },
+        "createdAt": "2026-04-17T15:48:12.106Z"
+      }
+    ],
+    "wss_1776442190909_1": [
+      {
+        "id": "evt_1776442190915_2",
+        "workspaceId": "ws_demo",
+        "sessionId": "wss_1776442190909_1",
+        "sourceEngineId": "crm",
+        "type": "record.selected",
+        "payload": {
+          "entityType": "company",
+          "entityId": "acme_1",
+          "selectedLabel": "Acme Corp"
+        },
+        "createdAt": "2026-04-17T16:09:50.915Z"
+      }
+    ],
+    "wss_1776445611676_1": [
+      {
+        "id": "evt_1776445611681_2",
+        "workspaceId": "ws_demo",
+        "sessionId": "wss_1776445611676_1",
+        "sourceEngineId": "crm",
+        "type": "record.selected",
+        "payload": {
+          "entityType": "company",
+          "entityId": "co_acme",
+          "selectedLabel": "Acme Corp"
+        },
+        "createdAt": "2026-04-17T17:06:51.681Z"
+      }
+    ],
+    "wss_1776445620003_3": [
+      {
+        "id": "evt_1776445620025_4",
+        "workspaceId": "ws_demo",
+        "sessionId": "wss_1776445620003_3",
+        "sourceEngineId": "crm",
+        "type": "record.selected",
+        "payload": {
+          "entityType": "company",
+          "entityId": "co_globex",
+          "selectedLabel": "Globex Corp"
+        },
+        "createdAt": "2026-04-17T17:07:00.025Z"
+      }
+    ],
+    "wss_1776446099787_1": [
+      {
+        "id": "evt_1776446099792_2",
+        "workspaceId": "ws_demo",
+        "sessionId": "wss_1776446099787_1",
+        "sourceEngineId": "crm",
+        "type": "record.selected",
+        "payload": {
+          "entityType": "company",
+          "entityId": "co_acme",
+          "selectedLabel": "Acme Corp"
+        },
+        "createdAt": "2026-04-17T17:14:59.792Z"
+      }
+    ],
+    "wss_1776446366189_3": [
+      {
+        "id": "evt_1776446366193_4",
+        "workspaceId": "ws_demo",
+        "sessionId": "wss_1776446366189_3",
+        "sourceEngineId": "crm",
+        "type": "record.selected",
+        "payload": {
+          "entityType": "company",
+          "entityId": "co_acme",
+          "selectedLabel": "Acme Corp"
+        },
+        "createdAt": "2026-04-17T17:19:26.193Z"
+      }
+    ]
+  }
+}

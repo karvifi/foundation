@@ -1,0 +1,16 @@
+{
+  "repo": "drizzle-team/drizzle-orm",
+  "url": "https://github.com/drizzle-team/drizzle-orm.git",
+  "status": "extracted",
+  "copied_count": 6,
+  "copied_files": [
+    "docs/custom-types.lite.md",
+    "docs/custom-types.md",
+    "docs/joins.md",
+    "docs/table-introspect-api.md",
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\drizzle-team__drizzle-orm'...\nUpdating files:  89% (1237/1381)\nUpdating files:  90% (1243/1381)\nUpdating files:  91% (1257/1381)\nUpdating files:  92% (1271/1381)\nUpdating files:  93% (1285/1381)\nUpdating files:  94% (1299/1381)\nUpdating files:  95% (1312/1381)\nUpdating files:  96% (1326/1381)\nUpdating files:  97% (1340/1381)\nUpdating files:  98% (1354/1381)\nUpdating files:  99% (1368/1381)\nUpdating files: 100% (1381/1381)\nUpdating files: 100% (1381/1381), done."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@sso/graph-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@sso/ai-gateway": "workspace:*",
+    "@sso/archetypes": "workspace:*",
+    "@sso/contracts": "workspace:*",
+    "@sso/node-registry": "workspace:*",
+    "@sso/repo-intelligence": "workspace:*",
+    "@sso/surface-compiler": "workspace:*"
+  }
+}

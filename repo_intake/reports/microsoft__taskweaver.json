@@ -1,0 +1,11 @@
+{
+  "repo": "microsoft/taskweaver",
+  "url": "https://github.com/microsoft/taskweaver.git",
+  "status": "extracted",
+  "copied_count": 1,
+  "copied_files": [
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\microsoft__taskweaver'..."
+}

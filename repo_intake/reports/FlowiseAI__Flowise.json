@@ -1,0 +1,12 @@
+{
+  "repo": "FlowiseAI/Flowise",
+  "url": "https://github.com/FlowiseAI/Flowise.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\FlowiseAI__Flowise'...\nUpdating files:  41% (934/2255)\nUpdating files:  42% (948/2255)\nUpdating files:  43% (970/2255)\nUpdating files:  44% (993/2255)\nUpdating files:  45% (1015/2255)\nUpdating files:  46% (1038/2255)\nUpdating files:  47% (1060/2255)\nUpdating files:  48% (1083/2255)\nUpdating files:  49% (1105/2255)\nUpdating files:  50% (1128/2255)\nUpdating files:  51% (1151/2255)\nUpdating files:  52% (1173/2255)\nUpdating files:  53% (1196/2255)\nUpdating files:  54% (1218/2255)\nUpdating files:  55% (1241/2255)\nUpdating files:  56% (1263/2255)\nUpdating files:  57% (1286/2255)\nUpdating files:  58% (1308/2255)\nUpdating files:  59% (1331/2255)\nUpdating files:  60% (1353/2255)\nUpdating files:  61% (1376/2255)\nUpdating files:  62% (1399/2255)\nUpdating files:  63% (1421/2255)\nUpdating files:  64% (1444/2255)\nUpdating files:  65% (1466/2255)\nUpdating files:  66% (1489/2255)\nUpdating files:  67% (1511/2255)\nUpdating files:  68% (1534/2255)\nUpdating files:  69% (1556/2255)\nUpdating files:  70% (1579/2255)\nUpdating files:  71% (1602/2255)\nUpdating files:  72% (1624/2255)\nUpdating files:  73% (1647/2255)\nUpdating files:  74% (1669/2255)\nUpdating files:  75% (1692/2255)\nUpdating files:  76% (1714/2255)\nUpdating files:  77% (1737/2255)\nUpdating files:  78% (1759/2255)\nUpdating files:  79% (1782/2255)\nUpdating files:  80% (1804/2255)\nUpdating files:  80% (1810/2255)\nUpdating files:  81% (1827/2255)\nUpdating files:  82% (1850/2255)\nUpdating files:  83% (1872/2255)\nUpdating files:  84% (1895/2255)\nUpdating files:  85% (1917/2255)\nUpdating files:  86% (1940/2255)\nUpdating files:  87% (1962/2255)\nUpdating files:  88% (1985/2255)\nUpdating files:  89% (2007/2255)\nUpdating files:  90% (2030/2255)\nUpdating files:  91% (2053/2255)\nUpdating files:  92% (2075/2255)\nUpdating files:  93% (2098/2255)\nUpdating files:  94% (2120/2255)\nUpdating files:  95% (2143/2255)\nUpdating files:  96% (2165/2255)\nUpdating files:  97% (2188/2255)\nUpdating files:  98% (2210/2255)\nUpdating files:  99% (2233/2255)\nUpdating files: 100% (2255/2255)\nUpdating files: 100% (2255/2255), done."
+}

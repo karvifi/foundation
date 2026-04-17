@@ -1,0 +1,9 @@
+{
+  "repo": "run-llama/llama_index",
+  "url": "https://github.com/run-llama/llama_index.git",
+  "status": "extracted",
+  "copied_count": 0,
+  "copied_files": [],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": ""
+}

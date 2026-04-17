@@ -1,0 +1,12 @@
+{
+  "repo": "activepieces/activepieces",
+  "url": "https://github.com/activepieces/activepieces.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": ""
+}

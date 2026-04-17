@@ -1,0 +1,92 @@
+{
+  "hooks": [
+    {
+      "id": "session-start-context",
+      "description": "Load project context at session start",
+      "event": "session:start",
+      "command": "node scripts/hooks/session-start.js",
+      "when": "always"
+    },
+    {
+      "id": "session-end-save",
+      "description": "Save session summary and progress at session end",
+      "event": "session:stop",
+      "command": "node scripts/hooks/session-end.js",
+      "when": "always"
+    },
+    {
+      "id": "secret-detector",
+      "description": "Block prompts containing likely API keys or secrets before sending to LLM",
+      "event": "pre:prompt",
+      "command": "node scripts/hooks/secret-detector.js",
+      "when": "always",
+      "note": "Catches patterns: sk-, ghp_, AKIA, Bearer, password=, api_key="
+    },
+    {
+      "id": "env-file-guard",
+      "description": "Block AI from reading .env, .pem, .key, .cert files",
+      "event": "pre:file:read",
+      "command": "node scripts/hooks/env-guard.js",
+      "when": "file_path matches \\.(env|pem|key|cert|p12|pfx)$"
+    },
+    {
+      "id": "console-log-warning",
+      "description": "Warn when console.log added to TypeScript/JavaScript files",
+      "event": "post:file:edit",
+      "command": "node scripts/hooks/console-log-check.js",
+      "when": "file_path matches \\.(ts|tsx|js|jsx)$"
+    },
+    {
+      "id": "print-warning",
+      "description": "Warn when print() added to Python files in production directories",
+      "event": "post:file:edit",
+      "command": "node scripts/hooks/print-check.js",
+      "when": "file_path matches \\.py$ and file_path not_matches test_"
+    },
+    {
+      "id": "typecheck-on-edit",
+      "description": "Run TypeScript type check after editing .ts/.tsx files",
+      "event": "post:file:edit",
+      "command": "node scripts/hooks/typecheck.js",
+      "when": "file_path matches \\.(ts|tsx)$"
+    },
+    {
+      "id": "compact-suggester",
+      "description": "Suggest /compact at strategic breakpoints",
+      "event": "session:checkpoint",
+      "command": "node scripts/hooks/suggest-compact.js",
+      "when": "context_percent > 50"
+    },
+    {
+      "id": "pattern-extractor",
+      "description": "Extract reusable patterns from session",
+      "event": "session:stop",
+      "command": "node scripts/hooks/extract-patterns.js",
+      "when": "session_has_commits"
+    },
+    {
+      "id": "git-push-review",
+      "description": "Prompt for review before git push",
+      "event": "pre:bash",
+      "command": "node scripts/hooks/git-push-review.js",
+      "when": "command matches ^git push"
+    },
+    {
+      "id": "mcp-audit-log",
+      "description": "Log all MCP tool calls for debugging and security auditing",
+      "event": "post:mcp",
+      "command": "node scripts/hooks/mcp-audit.js",
+      "when": "always"
+    }
+  ],
+  "_config": {
+    "profile": "standard",
+    "profiles": {
+      "minimal": ["session-start-context", "secret-detector", "env-file-guard"],
+      "standard": ["session-start-context", "session-end-save", "secret-detector", "env-file-guard", "console-log-warning", "compact-suggester"],
+      "strict": "all hooks enabled"
+    },
+    "disable_hooks": "Set ECC_DISABLED_HOOKS=hook-id1,hook-id2 environment variable",
+    "set_profile": "Set ECC_HOOK_PROFILE=minimal|standard|strict environment variable"
+  }
+}

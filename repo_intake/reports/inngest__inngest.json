@@ -1,0 +1,24 @@
+{
+  "repo": "inngest/inngest",
+  "url": "https://github.com/inngest/inngest.git",
+  "status": "extracted",
+  "copied_count": 14,
+  "copied_files": [
+    "CLAUDE.md",
+    "docs/api_v2_examples.json",
+    "docs/CONTRIBUTING.md",
+    "docs/DEVSERVER_ARCHITECTURE.md",
+    "docs/IMPLEMENTING_NEW_REST_API_V2_ENDPOINTS.md",
+    "docs/OPENAPI_WORKFLOW.md",
+    "docs/PULL_REQUEST_GUIDELINES.md",
+    "docs/RELEASING.md",
+    "docs/SDK_SPEC.md",
+    "docs/TYGO_TYPE_GENERATION.md",
+    "docs/durable-endpoints/streaming.md",
+    "docs/plans/db-adapter-refactor.md",
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\inngest__inngest'...\nUpdating files:   8% (989/12226)\nUpdating files:   9% (1101/12226)\nUpdating files:  10% (1223/12226)\nUpdating files:  11% (1345/12226)\nUpdating files:  12% (1468/12226)\nUpdating files:  13% (1590/12226)\nUpdating files:  14% (1712/12226)\nUpdating files:  15% (1834/12226)\nUpdating files:  16% (1957/12226)\nUpdating files:  16% (1987/12226)\nUpdating files:  17% (2079/12226)\nUpdating files:  18% (2201/12226)\nUpdating files:  19% (2323/12226)\nUpdating files:  20% (2446/12226)\nUpdating files:  21% (2568/12226)\nUpdating files:  22% (2690/12226)\nUpdating files:  23% (2812/12226)\nUpdating files:  24% (2935/12226)\nUpdating files:  25% (3057/12226)\nUpdating files:  25% (3072/12226)\nUpdating files:  26% (3179/12226)\nUpdating files:  27% (3302/12226)\nUpdating files:  28% (3424/12226)\nUpdating files:  29% (3546/12226)\nUpdating files:  30% (3668/12226)\nUpdating files:  31% (3791/12226)\nUpdating files:  32% (3913/12226)\nUpdating files:  33% (4035/12226)\nUpdating files:  33% (4147/12226)\nUpdating files:  34% (4157/12226)\nUpdating files:  35% (4280/12226)\nUpdating files:  36% (4402/12226)\nUpdating files:  37% (4524/12226)\nUpdating files:  38% (4646/12226)\nUpdating files:  39% (4769/12226)\nUpdating files:  40% (4891/12226)\nUpdating files:  41% (5013/12226)\nUpdating files:  42% (5135/12226)\nUpdating files:  42% (5158/12226)\nUpdating files:  43% (5258/12226)\nUpdating files:  44% (5380/12226)\nUpdating files:  45% (5502/12226)\nUpdating files:  46% (5624/12226)\nUpdating files:  47% (5747/12226)\nUpdating files:  48% (5869/12226)\nUpdating files:  49% (5991/12226)\nUpdating files:  50% (6113/12226)\nUpdating files:  50% (6195/12226)\nUpdating files:  51% (6236/12226)\nUpdating files:  52% (6358/12226)\nUpdating files:  53% (6480/12226)\nUpdating files:  54% (6603/12226)\nUpdating files:  55% (6725/12226)\nUpdating files:  56% (6847/12226)\nUpdating files:  57% (6969/12226)\nUpdating files:  57% (7055/12226)\nUpdating files:  58% (7092/12226)\nUpdating files:  59% (7214/12226)\nUpdating files:  60% (7336/12226)\nUpdating files:  61% (7458/12226)\nUpdating files:  62% (7581/12226)\nUpdating files:  63% (7703/12226)\nUpdating files:  64% (7825/12226)\nUpdating files:  65% (7947/12226)\nUpdating files:  66% (8070/12226)\nUpdating files:  66% (8098/12226)\nUpdating files:  67% (8192/12226)\nUpdating files:  68% (8314/12226)\nUpdating files:  69% (8436/12226)\nUpdating files:  70% (8559/12226)\nUpdating files:  71% (8681/12226)\nUpdating files:  72% (8803/12226)\nUpdating files:  73% (8925/12226)\nUpdating files:  74% (9048/12226)\nUpdating files:  74% (9107/12226)\nUpdating files:  75% (9170/12226)\nUpdating files:  76% (9292/12226)\nUpdating files:  77% (9415/12226)\nUpdating files:  78% (9537/12226)\nUpdating files:  79% (9659/12226)\nUpdating files:  80% (9781/12226)\nUpdating files:  81% (9904/12226)\nUpdating files:  82% (10026/12226)\nUpdating files:  83% (10148/12226)\nUpdating files:  83% (10193/12226)\nUpdating files:  84% (10270/12226)\nUpdating files:  85% (10393/12226)\nUpdating files:  86% (10515/12226)\nUpdating files:  87% (10637/12226)\nUpdating files:  88% (10759/12226)\nUpdating files:  89% (10882/12226)\nUpdating files:  89% (10997/12226)\nUpdating files:  90% (11004/12226)\nUpdating files:  91% (11126/12226)\nUpdating files:  92% (11248/12226)\nUpdating files:  93% (11371/12226)\nUpdating files:  94% (11493/12226)\nUpdating files:  95% (11615/12226)\nUpdating files:  96% (11737/12226)\nUpdating files:  97% (11860/12226)\nUpdating files:  98% (11982/12226)\nUpdating files:  98% (12028/12226)\nUpdating files:  99% (12104/12226)\nUpdating files:  99% (12210/12226)\nUpdating files: 100% (12226/12226)\nUpdating files: 100% (12226/12226), done."
+}

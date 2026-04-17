@@ -1,0 +1,14 @@
+{
+  "repo": "checkly/checkly-cli",
+  "url": "https://github.com/checkly/checkly-cli.git",
+  "status": "extracted",
+  "copied_count": 4,
+  "copied_files": [
+    "package.json",
+    "README.md",
+    "skills/checkly/README.md",
+    "skills/checkly/SKILL.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\checkly__checkly-cli'...\nUpdating files:  89% (964/1072)\nUpdating files:  90% (965/1072)\nUpdating files:  91% (976/1072)\nUpdating files:  92% (987/1072)\nUpdating files:  93% (997/1072)\nUpdating files:  94% (1008/1072)\nUpdating files:  95% (1019/1072)\nUpdating files:  96% (1030/1072)\nUpdating files:  97% (1040/1072)\nUpdating files:  98% (1051/1072)\nUpdating files:  99% (1062/1072)\nUpdating files: 100% (1072/1072)\nUpdating files: 100% (1072/1072), done."
+}

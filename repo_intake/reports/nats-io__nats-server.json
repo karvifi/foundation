@@ -1,0 +1,11 @@
+{
+  "repo": "nats-io/nats-server",
+  "url": "https://github.com/nats-io/nats-server.git",
+  "status": "extracted",
+  "copied_count": 1,
+  "copied_files": [
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\nats-io__nats-server'..."
+}

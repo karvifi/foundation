@@ -1,0 +1,12 @@
+{
+  "repo": "xyflow/xyflow",
+  "url": "https://github.com/xyflow/xyflow.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\xyflow__xyflow'...\nUpdating files:  98% (673/685)\nUpdating files:  99% (679/685)\nUpdating files: 100% (685/685)\nUpdating files: 100% (685/685), done."
+}

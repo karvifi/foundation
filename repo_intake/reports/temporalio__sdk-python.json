@@ -1,0 +1,12 @@
+{
+  "repo": "temporalio/sdk-python",
+  "url": "https://github.com/temporalio/sdk-python.git",
+  "status": "extracted",
+  "copied_count": 2,
+  "copied_files": [
+    "pyproject.toml",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\temporalio__sdk-python'..."
+}

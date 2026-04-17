@@ -1,0 +1,14 @@
+{
+  "repo": "langfuse/langfuse",
+  "url": "https://github.com/langfuse/langfuse.git",
+  "status": "extracted",
+  "copied_count": 4,
+  "copied_files": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "package.json",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\langfuse__langfuse'...\nUpdating files:  33% (1066/3172)\nUpdating files:  34% (1079/3172)\nUpdating files:  35% (1111/3172)\nUpdating files:  36% (1142/3172)\nUpdating files:  37% (1174/3172)\nUpdating files:  38% (1206/3172)\nUpdating files:  39% (1238/3172)\nUpdating files:  40% (1269/3172)\nUpdating files:  41% (1301/3172)\nUpdating files:  42% (1333/3172)\nUpdating files:  43% (1364/3172)\nUpdating files:  44% (1396/3172)\nUpdating files:  45% (1428/3172)\nUpdating files:  46% (1460/3172)\nUpdating files:  47% (1491/3172)\nUpdating files:  48% (1523/3172)\nUpdating files:  49% (1555/3172)\nUpdating files:  50% (1586/3172)\nUpdating files:  51% (1618/3172)\nUpdating files:  52% (1650/3172)\nUpdating files:  53% (1682/3172)\nUpdating files:  54% (1713/3172)\nUpdating files:  55% (1745/3172)\nUpdating files:  56% (1777/3172)\nUpdating files:  57% (1809/3172)\nUpdating files:  58% (1840/3172)\nUpdating files:  59% (1872/3172)\nUpdating files:  60% (1904/3172)\nUpdating files:  61% (1935/3172)\nUpdating files:  62% (1967/3172)\nUpdating files:  63% (1999/3172)\nUpdating files:  64% (2031/3172)\nUpdating files:  64% (2059/3172)\nUpdating files:  65% (2062/3172)\nUpdating files:  66% (2094/3172)\nUpdating files:  67% (2126/3172)\nUpdating files:  68% (2157/3172)\nUpdating files:  69% (2189/3172)\nUpdating files:  70% (2221/3172)\nUpdating files:  71% (2253/3172)\nUpdating files:  72% (2284/3172)\nUpdating files:  73% (2316/3172)\nUpdating files:  74% (2348/3172)\nUpdating files:  75% (2379/3172)\nUpdating files:  76% (2411/3172)\nUpdating files:  77% (2443/3172)\nUpdating files:  78% (2475/3172)\nUpdating files:  79% (2506/3172)\nUpdating files:  80% (2538/3172)\nUpdating files:  81% (2570/3172)\nUpdating files:  82% (2602/3172)\nUpdating files:  83% (2633/3172)\nUpdating files:  84% (2665/3172)\nUpdating files:  85% (2697/3172)\nUpdating files:  86% (2728/3172)\nUpdating files:  87% (2760/3172)\nUpdating files:  88% (2792/3172)\nUpdating files:  89% (2824/3172)\nUpdating files:  90% (2855/3172)\nUpdating files:  91% (2887/3172)\nUpdating files:  92% (2919/3172)\nUpdating files:  93% (2950/3172)\nUpdating files:  94% (2982/3172)\nUpdating files:  95% (3014/3172)\nUpdating files:  96% (3046/3172)\nUpdating files:  97% (3077/3172)\nUpdating files:  98% (3109/3172)\nUpdating files:  99% (3141/3172)\nUpdating files: 100% (3172/3172)\nUpdating files: 100% (3172/3172), done."
+}

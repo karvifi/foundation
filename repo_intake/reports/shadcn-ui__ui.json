@@ -1,0 +1,23 @@
+{
+  "repo": "shadcn-ui/ui",
+  "url": "https://github.com/shadcn-ui/ui.git",
+  "status": "extracted",
+  "copied_count": 13,
+  "copied_files": [
+    "package.json",
+    "README.md",
+    "skills/shadcn/cli.md",
+    "skills/shadcn/customization.md",
+    "skills/shadcn/mcp.md",
+    "skills/shadcn/SKILL.md",
+    "skills/shadcn/agents/openai.yml",
+    "skills/shadcn/evals/evals.json",
+    "skills/shadcn/rules/base-vs-radix.md",
+    "skills/shadcn/rules/composition.md",
+    "skills/shadcn/rules/forms.md",
+    "skills/shadcn/rules/icons.md",
+    "skills/shadcn/rules/styling.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\shadcn-ui__ui'...\nUpdating files:  15% (1295/8579)\nUpdating files:  16% (1373/8579)\nUpdating files:  17% (1459/8579)\nUpdating files:  18% (1545/8579)\nUpdating files:  19% (1631/8579)\nUpdating files:  20% (1716/8579)\nUpdating files:  21% (1802/8579)\nUpdating files:  22% (1888/8579)\nUpdating files:  23% (1974/8579)\nUpdating files:  24% (2059/8579)\nUpdating files:  25% (2145/8579)\nUpdating files:  26% (2231/8579)\nUpdating files:  27% (2317/8579)\nUpdating files:  28% (2403/8579)\nUpdating files:  28% (2454/8579)\nUpdating files:  29% (2488/8579)\nUpdating files:  30% (2574/8579)\nUpdating files:  31% (2660/8579)\nUpdating files:  32% (2746/8579)\nUpdating files:  33% (2832/8579)\nUpdating files:  34% (2917/8579)\nUpdating files:  35% (3003/8579)\nUpdating files:  36% (3089/8579)\nUpdating files:  37% (3175/8579)\nUpdating files:  38% (3261/8579)\nUpdating files:  39% (3346/8579)\nUpdating files:  40% (3432/8579)\nUpdating files:  41% (3518/8579)\nUpdating files:  42% (3604/8579)\nUpdating files:  42% (3681/8579)\nUpdating files:  43% (3689/8579)\nUpdating files:  44% (3775/8579)\nUpdating files:  45% (3861/8579)\nUpdating files:  46% (3947/8579)\nUpdating files:  47% (4033/8579)\nUpdating files:  48% (4118/8579)\nUpdating files:  49% (4204/8579)\nUpdating files:  50% (4290/8579)\nUpdating files:  51% (4376/8579)\nUpdating files:  52% (4462/8579)\nUpdating files:  53% (4547/8579)\nUpdating files:  54% (4633/8579)\nUpdating files:  55% (4719/8579)\nUpdating files:  55% (4720/8579)\nUpdating files:  56% (4805/8579)\nUpdating files:  57% (4891/8579)\nUpdating files:  58% (4976/8579)\nUpdating files:  59% (5062/8579)\nUpdating files:  60% (5148/8579)\nUpdating files:  61% (5234/8579)\nUpdating files:  62% (5319/8579)\nUpdating files:  63% (5405/8579)\nUpdating files:  64% (5491/8579)\nUpdating files:  65% (5577/8579)\nUpdating files:  66% (5663/8579)\nUpdating files:  67% (5748/8579)\nUpdating files:  68% (5834/8579)\nUpdating files:  68% (5845/8579)\nUpdating files:  69% (5920/8579)\nUpdating files:  70% (6006/8579)\nUpdating files:  71% (6092/8579)\nUpdating files:  72% (6177/8579)\nUpdating files:  73% (6263/8579)\nUpdating files:  74% (6349/8579)\nUpdating files:  75% (6435/8579)\nUpdating files:  76% (6521/8579)\nUpdating files:  77% (6606/8579)\nUpdating files:  78% (6692/8579)\nUpdating files:  79% (6778/8579)\nUpdating files:  80% (6864/8579)\nUpdating files:  80% (6940/8579)\nUpdating files:  81% (6949/8579)\nUpdating files:  82% (7035/8579)\nUpdating files:  83% (7121/8579)\nUpdating files:  84% (7207/8579)\nUpdating files:  85% (7293/8579)\nUpdating files:  86% (7378/8579)\nUpdating files:  87% (7464/8579)\nUpdating files:  88% (7550/8579)\nUpdating files:  89% (7636/8579)\nUpdating files:  90% (7722/8579)\nUpdating files:  91% (7807/8579)\nUpdating files:  92% (7893/8579)\nUpdating files:  93% (7979/8579)\nUpdating files:  94% (8065/8579)\nUpdating files:  95% (8151/8579)\nUpdating files:  95% (8156/8579)\nUpdating files:  96% (8236/8579)\nUpdating files:  97% (8322/8579)\nUpdating files:  98% (8408/8579)\nUpdating files:  99% (8494/8579)\nUpdating files: 100% (8579/8579)\nUpdating files: 100% (8579/8579), done."
+}

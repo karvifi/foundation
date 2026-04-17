@@ -1,0 +1,3006 @@
+[
+  {
+    "plan": {
+      "appName": "Revenue OS",
+      "entities": [
+        {
+          "connector": "hubspot",
+          "operation": "compose_revenue_os_capability"
+        },
+        {
+          "connector": "gmail",
+          "operation": "compose_revenue_os_capability"
+        },
+        {
+          "connector": "slack",
+          "operation": "compose_revenue_os_capability"
+        },
+        {
+          "connector": "calendar",
+          "operation": "compose_revenue_os_capability"
+        }
+      ],
+      "uiMode": "canvas"
+    },
+    "graph": {
+      "id": "wf_1776446366173",
+      "name": "Revenue OS",
+      "nodes": [
+        {
+          "id": "n0",
+          "type": "trigger.intent",
+          "config": {
+            "workspacePatternId": "sales_workspace"
+          },
+          "position": {
+            "x": 120,
+            "y": 40
+          }
+        },
+        {
+          "id": "n1",
+          "type": "core.router",
+          "config": {
+            "uiMode": "canvas"
+          },
+          "position": {
+            "x": 320,
+            "y": 40
+          }
+        },
+        {
+          "id": "n2",
+          "type": "engine.crm",
+          "config": {
+            "panelId": "p_crm",
+            "engineId": "crm",
+            "enginePackId": null,
+            "enginePackTitle": null,
+            "enginePackSummary": null,
+            "enginePackRepos": [],
+            "dock": "center",
+            "ratio": 0.6,
+            "suggestedRepos": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "signatureHints": [
+              "type:PackageJson",
+              "function:readPackageJson",
+              "function:readPackageEslint",
+              "function:writePackageEslint",
+              "function:packagePrePublishChecks",
+              "class:CustomHttpClient"
+            ],
+            "templateFiles": [
+              "package.json",
+              "packages/web/package.json",
+              "package.json",
+              "website/package.json"
+            ]
+          },
+          "position": {
+            "x": 320,
+            "y": 140
+          },
+          "surface": {
+            "kind": "panel",
+            "title": "CRM Engine",
+            "width": "full",
+            "defaultOpen": true
+          },
+          "meta": {
+            "label": "CRM Engine",
+            "description": "CRM Engine compiled from activepieces/activepieces, apify/crawlee",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.171Z"
+          },
+          "policy": {
+            "retryCount": 1,
+            "timeoutMs": 12000
+          }
+        },
+        {
+          "id": "n3",
+          "type": "engine.email",
+          "config": {
+            "panelId": "p_email",
+            "engineId": "email",
+            "enginePackId": null,
+            "enginePackTitle": null,
+            "enginePackSummary": null,
+            "enginePackRepos": [],
+            "dock": "right",
+            "ratio": 0.2,
+            "suggestedRepos": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "signatureHints": [
+              "type:PackageJson",
+              "function:readPackageJson",
+              "function:readPackageEslint",
+              "function:writePackageEslint",
+              "function:packagePrePublishChecks",
+              "class:CustomHttpClient"
+            ],
+            "templateFiles": [
+              "package.json",
+              "packages/web/package.json",
+              "package.json",
+              "website/package.json"
+            ]
+          },
+          "position": {
+            "x": 560,
+            "y": 240
+          },
+          "surface": {
+            "kind": "card",
+            "title": "Email Engine",
+            "defaultOpen": true
+          },
+          "meta": {
+            "label": "Email Engine",
+            "description": "Email Engine compiled from activepieces/activepieces, apify/crawlee",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.171Z"
+          },
+          "policy": {
+            "requireApproval": true,
+            "retryCount": 1,
+            "timeoutMs": 15000
+          }
+        },
+        {
+          "id": "n4",
+          "type": "engine.calendar",
+          "config": {
+            "panelId": "p_calendar",
+            "engineId": "calendar",
+            "enginePackId": "pack_calendar",
+            "enginePackTitle": "Calendar Pack",
+            "enginePackSummary": "calendar engine synthesized from apify/crawlee, microsoft/playwright, n8n-io/n8n",
+            "enginePackRepos": [
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "dock": "right",
+            "ratio": 0.2,
+            "suggestedRepos": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "signatureHints": [
+              "type:PackageJson",
+              "function:readPackageJson",
+              "function:readPackageEslint",
+              "function:writePackageEslint",
+              "function:packagePrePublishChecks",
+              "class:CustomHttpClient"
+            ],
+            "templateFiles": [
+              "package.json",
+              "packages/web/package.json",
+              "package.json",
+              "website/package.json"
+            ]
+          },
+          "position": {
+            "x": 560,
+            "y": 360
+          },
+          "surface": {
+            "kind": "card",
+            "title": "Calendar Engine",
+            "defaultOpen": true
+          },
+          "meta": {
+            "label": "Calendar Engine",
+            "description": "calendar engine synthesized from apify/crawlee, microsoft/playwright, n8n-io/n8n",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.171Z"
+          },
+          "policy": {
+            "retryCount": 1,
+            "timeoutMs": 12000
+          }
+        },
+        {
+          "id": "n5",
+          "type": "hubspot.contact",
+          "connector": "hubspot",
+          "config": {
+            "operation": "compose_revenue_os_capability",
+            "workspacePatternId": "sales_workspace",
+            "repoSignals": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright"
+            ],
+            "templateSource": "core",
+            "templateSourceRepo": null
+          },
+          "position": {
+            "x": 320,
+            "y": 352
+          },
+          "meta": {
+            "label": "hubspot capability",
+            "description": "Connector action for compose_revenue_os_capability",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.172Z"
+          }
+        },
+        {
+          "id": "n6",
+          "type": "gmail.send",
+          "connector": "gmail",
+          "config": {
+            "operation": "compose_revenue_os_capability",
+            "workspacePatternId": "sales_workspace",
+            "repoSignals": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright"
+            ],
+            "templateSource": "core",
+            "templateSourceRepo": null
+          },
+          "position": {
+            "x": 560,
+            "y": 344
+          },
+          "meta": {
+            "label": "gmail capability",
+            "description": "Connector action for compose_revenue_os_capability",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.172Z"
+          }
+        },
+        {
+          "id": "n7",
+          "type": "slack.message",
+          "connector": "slack",
+          "config": {
+            "sourceRepoSlug": "PipedreamHQ/pipedream",
+            "sourceFrameworks": [],
+            "referenceEntrypoints": [],
+            "sampleSignatureSymbols": [
+              "workflow",
+              "workflow",
+              "workflow",
+              "workflow"
+            ],
+            "operation": "compose_revenue_os_capability",
+            "workspacePatternId": "sales_workspace",
+            "repoSignals": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright"
+            ],
+            "templateSource": "clone",
+            "templateSourceRepo": "PipedreamHQ/pipedream"
+          },
+          "position": {
+            "x": 560,
+            "y": 356
+          },
+          "meta": {
+            "label": "slack capability",
+            "description": "Connector action for compose_revenue_os_capability adopted from PipedreamHQ/pipedream",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.173Z"
+          }
+        },
+        {
+          "id": "n8",
+          "type": "calendar.event",
+          "connector": "calendar",
+          "config": {
+            "sourceRepoSlug": "apify/crawlee",
+            "sourceFrameworks": [
+              "express",
+              "playwright"
+            ],
+            "referenceEntrypoints": [],
+            "sampleSignatureSymbols": [
+              "CustomHttpClient",
+              "handler",
+              "handler",
+              "handler"
+            ],
+            "operation": "compose_revenue_os_capability",
+            "workspacePatternId": "sales_workspace",
+            "repoSignals": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright"
+            ],
+            "templateSource": "clone",
+            "templateSourceRepo": "apify/crawlee"
+          },
+          "position": {
+            "x": 560,
+            "y": 368
+          },
+          "meta": {
+            "label": "calendar capability",
+            "description": "Connector action for compose_revenue_os_capability adopted from apify/crawlee",
+            "addedBy": "intent_service",
+            "addedAt": "2026-04-17T17:19:26.173Z"
+          }
+        },
+        {
+          "id": "n9",
+          "type": "core.storage",
+          "config": {
+            "workspacePatternId": "sales_workspace"
+          },
+          "position": {
+            "x": 520,
+            "y": 40
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "n0",
+          "to": "n1",
+          "label": "intent"
+        },
+        {
+          "from": "n1",
+          "to": "n2",
+          "label": "center"
+        },
+        {
+          "from": "n1",
+          "to": "n3",
+          "label": "right"
+        },
+        {
+          "from": "n1",
+          "to": "n4",
+          "label": "right"
+        },
+        {
+          "from": "n2",
+          "to": "n5",
+          "label": "bind"
+        },
+        {
+          "from": "n3",
+          "to": "n6",
+          "label": "bind"
+        },
+        {
+          "from": "n3",
+          "to": "n7",
+          "label": "bind"
+        },
+        {
+          "from": "n4",
+          "to": "n8",
+          "label": "bind"
+        },
+        {
+          "from": "n1",
+          "to": "n9",
+          "label": "persist"
+        }
+      ],
+      "workspacePatternId": "sales_workspace",
+      "layout": {
+        "builderMode": {
+          "leftPanel": null,
+          "rightPanel": "p_email"
+        },
+        "operatorMode": {
+          "mainSurface": "crm",
+          "pinnedSurfaces": [
+            "email",
+            "calendar"
+          ],
+          "hiddenSections": []
+        }
+      },
+      "schemaVersion": "1.0.0"
+    },
+    "surface": {
+      "appId": "app_wf_1776446366173",
+      "appName": "Revenue OS",
+      "layout": "multi-engine",
+      "workspacePatternId": "sales_workspace",
+      "mode": "canvas",
+      "compiledFrom": [
+        "activepieces/activepieces",
+        "apify/crawlee",
+        "microsoft/playwright",
+        "n8n-io/n8n",
+        "PipedreamHQ/pipedream",
+        "puppeteer/puppeteer"
+      ],
+      "components": [
+        {
+          "id": "c_n2",
+          "kind": "table",
+          "title": "CRM Engine",
+          "bindsToNodeId": "n2",
+          "props": {
+            "editable": true,
+            "source": "core",
+            "nodeType": "engine.crm",
+            "panelId": "p_crm",
+            "dock": "center",
+            "ratio": 0.6,
+            "engineId": "crm",
+            "enginePackId": null,
+            "enginePackTitle": null,
+            "enginePackSummary": null,
+            "enginePackRepos": [],
+            "suggestedRepos": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "templateFiles": [
+              "package.json",
+              "packages/web/package.json",
+              "package.json",
+              "website/package.json"
+            ]
+          }
+        },
+        {
+          "id": "c_n3",
+          "kind": "email",
+          "title": "Email Engine",
+          "bindsToNodeId": "n3",
+          "props": {
+            "editable": true,
+            "source": "core",
+            "nodeType": "engine.email",
+            "panelId": "p_email",
+            "dock": "right",
+            "ratio": 0.2,
+            "engineId": "email",
+            "enginePackId": null,
+            "enginePackTitle": null,
+            "enginePackSummary": null,
+            "enginePackRepos": [],
+            "suggestedRepos": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "templateFiles": [
+              "package.json",
+              "packages/web/package.json",
+              "package.json",
+              "website/package.json"
+            ]
+          }
+        },
+        {
+          "id": "c_n4",
+          "kind": "timeline",
+          "title": "Calendar Engine",
+          "bindsToNodeId": "n4",
+          "props": {
+            "editable": true,
+            "source": "core",
+            "nodeType": "engine.calendar",
+            "panelId": "p_calendar",
+            "dock": "right",
+            "ratio": 0.2,
+            "engineId": "calendar",
+            "enginePackId": "pack_calendar",
+            "enginePackTitle": "Calendar Pack",
+            "enginePackSummary": "calendar engine synthesized from apify/crawlee, microsoft/playwright, n8n-io/n8n",
+            "enginePackRepos": [
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "suggestedRepos": [
+              "activepieces/activepieces",
+              "apify/crawlee",
+              "microsoft/playwright",
+              "n8n-io/n8n"
+            ],
+            "templateFiles": [
+              "package.json",
+              "packages/web/package.json",
+              "package.json",
+              "website/package.json"
+            ]
+          }
+        }
+      ]
+    },
+    "synthesis": {
+      "workspacePatternId": "sales_workspace",
+      "selectedRepoSlugs": [
+        "activepieces/activepieces",
+        "apify/crawlee",
+        "microsoft/playwright",
+        "n8n-io/n8n",
+        "PipedreamHQ/pipedream",
+        "puppeteer/puppeteer"
+      ],
+      "selectedCapabilityIds": [
+        "cap_automation",
+        "cap_workflow",
+        "cap_orchestration",
+        "cap_ai",
+        "cap_graph",
+        "cap_durable",
+        "cap_agents",
+        "cap_integrations",
+        "cap_data",
+        "cap_database",
+        "cap_events",
+        "cap_nodes",
+        "cap_auth",
+        "cap_storage",
+        "cap_frontend",
+        "cap_webapp",
+        "cap_browser",
+        "cap_scripting",
+        "cap_jobs",
+        "cap_testing",
+        "cap_scraping",
+        "cap_orm",
+        "cap_media",
+        "cap_canvas",
+        "cap_ui",
+        "cap_backend",
+        "cap_api"
+      ],
+      "signatureHints": [
+        "type:PackageJson",
+        "function:readPackageJson",
+        "function:readPackageEslint",
+        "function:writePackageEslint",
+        "function:packagePrePublishChecks",
+        "class:CustomHttpClient",
+        "function:handler",
+        "function:handler",
+        "function:handler",
+        "route:GET",
+        "type:Binary",
+        "type:Channel",
+        "type:Events",
+        "type:EventMap",
+        "type:CommandParameters",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "workflow:workflow",
+        "type:BrowserProvider"
+      ],
+      "templateFiles": [
+        "package.json",
+        "packages/web/package.json",
+        "package.json",
+        "website/package.json",
+        "package.json",
+        "utils/flakiness-dashboard/package.json",
+        "packages/workflow/package.json",
+        "packages/testing/rules-engine/package.json",
+        "components/_1shop_api/package.json",
+        "components/z_api/package.json",
+        "package.json",
+        "website/package.json"
+      ],
+      "repoPatterns": [
+        {
+          "slug": "activepieces/activepieces",
+          "manifestName": "activepieces",
+          "scripts": [
+            "prebuild",
+            "serve:frontend",
+            "serve:backend",
+            "serve:engine",
+            "serve:worker",
+            "push",
+            "dev",
+            "dev:backend",
+            "dev:frontend",
+            "start",
+            "test:e2e",
+            "db-migration"
+          ],
+          "dependencies": [
+            "@activepieces/import-fresh-webpack",
+            "@ai-sdk/anthropic",
+            "@ai-sdk/azure",
+            "@ai-sdk/google",
+            "@ai-sdk/google-vertex",
+            "@ai-sdk/mcp",
+            "@ai-sdk/openai",
+            "@ai-sdk/openai-compatible",
+            "@ai-sdk/provider",
+            "@ai-sdk/replicate",
+            "@authenio/samlify-node-xmllint",
+            "@aws-sdk/client-s3",
+            "@aws-sdk/client-secrets-manager",
+            "@aws-sdk/s3-request-presigner",
+            "@babel/runtime",
+            "@bull-board/api",
+            "@bull-board/fastify",
+            "@codemirror/lang-javascript",
+            "@codemirror/lang-json",
+            "@datastructures-js/queue",
+            "@dnd-kit/core",
+            "@dnd-kit/modifiers",
+            "@dnd-kit/sortable",
+            "@dnd-kit/utilities",
+            "@electric-sql/pglite",
+            "@fastify/basic-auth",
+            "@fastify/cors",
+            "@fastify/formbody",
+            "@fastify/http-proxy",
+            "@fastify/multipart",
+            "@fastify/otel",
+            "@fastify/rate-limit",
+            "@fastify/swagger",
+            "@fastify/type-provider-typebox",
+            "@hookform/resolvers",
+            "@hyperdx/node-opentelemetry",
+            "@keyv/sqlite",
+            "@logtail/pino",
+            "@modelcontextprotocol/sdk",
+            "@octokit/rest"
+          ],
+          "keywords": [],
+          "readmeHighlights": [
+            "# 🤯 Welcome to Activepieces",
+            "## 🔥 Why Activepieces is Different:",
+            "- **🔒 Secure by Design**: Self-hosted and network-gapped for maximum security and control over your data.",
+            "## 🛠️  Builder Features:",
+            "- [x] Loops",
+            "- [x] Branches",
+            "- [x] Auto Retries",
+            "- [x] HTTP",
+            "- [x] Code with **NPM**",
+            "- [x] ASK AI in Code Piece (Non technical user can clean data without knowing to code)",
+            "- [x] Flows are fully versioned.",
+            "- [x] Languages Translations"
+          ],
+          "frameworks": [
+            "react",
+            "fastify"
+          ],
+          "entrypoints": [],
+          "signatureCount": 12,
+          "templateCount": 6,
+          "sampleSignatures": [
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_files_ts_2",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/files.ts",
+              "line": 3,
+              "kind": "type",
+              "symbol": "PackageJson",
+              "signature": "export type PackageJson = {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_files_ts_19",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/files.ts",
+              "line": 20,
+              "kind": "function",
+              "symbol": "readPackageJson",
+              "signature": "export const readPackageJson = async (path: string): Promise<PackageJson> => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_files_ts_23",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/files.ts",
+              "line": 24,
+              "kind": "function",
+              "symbol": "readPackageEslint",
+              "signature": "export const readPackageEslint = async (path: string): Promise<any> => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_files_ts_27",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/files.ts",
+              "line": 28,
+              "kind": "function",
+              "symbol": "writePackageEslint",
+              "signature": "export const writePackageEslint = async (path: string, eslint: any): Promise<void> => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_package_pre_publish_checks_ts_85",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/package-pre-publish-checks.ts",
+              "line": 86,
+              "kind": "function",
+              "symbol": "packagePrePublishChecks",
+              "signature": "export const packagePrePublishChecks = async (path: string): Promise<boolean> => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_piece_script_utils_ts_53",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/piece-script-utils.ts",
+              "line": 54,
+              "kind": "function",
+              "symbol": "getCommunityPieceFolder",
+              "signature": "export function getCommunityPieceFolder(pieceName: string): string {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_piece_script_utils_ts_58",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/piece-script-utils.ts",
+              "line": 59,
+              "kind": "function",
+              "symbol": "findAllPiecesDirectoryInSource",
+              "signature": "export async function findAllPiecesDirectoryInSource(): Promise<string[]> {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_piece_script_utils_ts_64",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/piece-script-utils.ts",
+              "line": 65,
+              "kind": "function",
+              "symbol": "pieceMetadataExists",
+              "signature": "export const pieceMetadataExists = async (",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_piece_script_utils_ts_87",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/piece-script-utils.ts",
+              "line": 88,
+              "kind": "function",
+              "symbol": "findNewPieces",
+              "signature": "export async function findNewPieces(): Promise<PieceMetadata[]> {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_piece_script_utils_ts_138",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/piece-script-utils.ts",
+              "line": 139,
+              "kind": "function",
+              "symbol": "findAllPieces",
+              "signature": "export async function findAllPieces(): Promise<PieceMetadata[]> {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_utils_publish_npm_package_ts_57",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/utils/publish-npm-package.ts",
+              "line": 58,
+              "kind": "function",
+              "symbol": "publishNpmPackage",
+              "signature": "export const publishNpmPackage = async (path: string): Promise<void> => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_activepieces_activepieces_tools_scripts_pieces_publish_piece_ts_10",
+              "slug": "activepieces/activepieces",
+              "file": "tools/scripts/pieces/publish-piece.ts",
+              "line": 11,
+              "kind": "function",
+              "symbol": "publishPiece",
+              "signature": "export const publishPiece = async (name: string): Promise<void> => {",
+              "tags": [
+                "general"
+              ]
+            }
+          ],
+          "sampleTemplates": [
+            {
+              "id": "tpl_activepieces_activepieces_package_json",
+              "slug": "activepieces/activepieces",
+              "file": "package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"activepieces\",\n  \"version\": \"0.81.3\",\n  \"rcVersion\": \"0.82.0-rc.0\",\n  \"packageManager\": \"bun@1.3.3\",\n  \"scripts\": {\n    \"prebuild\": \"node tools/scripts/install-bun.js\",\n    \"serve:frontend\": \"turbo run serve --filter=web\",\n    \"serve:backend\": \"turbo run serve --filter=api\",\n    \"serve:engine\": \"turbo run serve --filter=@activepieces/engine\",\n    \"serve:worker\": \"turbo run serve --filter=worker\",\n    \"push\": \"turbo run lint && git push\",\n    \"dev\": \"node tools/scripts/install-bun.js && turbo run serve --filter=web --filter=api --filter=@activepieces/engine --filter=worker --ui stream\",\n    \"dev:backend\": \"turbo run serve --filter=api --filter=@activepieces/engine --ui stream\",\n    \"dev:frontend\": \"turbo run serve --filter=web --filter=api --filter=@activepieces/engine --ui stream\",\n    \"start\": \"node tools/setup-dev.js && npm run dev\",\n    \"test:e2e\": \"npx playwright test --config=packages/tests-e2e/playwright.config.ts\",\n    \"db-migration\": \"npx turbo run db-migration --filter=api --\",\n    \"check-migrations\": \"npx turbo run check-migrations --filter=api\",\n    \"rollback\": \"npm run rollback --workspace=packages/server/api --\",\n    \"lint-core\": \"turbo run lint --filter=@"
+            },
+            {
+              "id": "tpl_activepieces_activepieces_packages_web_package_json",
+              "slug": "activepieces/activepieces",
+              "file": "packages/web/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"web\",\n  \"version\": \"0.0.1\",\n  \"private\": true,\n  \"dependencies\": {\n    \"@activepieces/pieces-common\": \"workspace:*\",\n    \"@activepieces/pieces-framework\": \"workspace:*\",\n    \"@activepieces/shared\": \"workspace:*\",\n    \"@codemirror/commands\": \"6.10.3\",\n    \"@codemirror/lang-javascript\": \"6.2.2\",\n    \"@codemirror/lang-json\": \"6.0.1\",\n    \"@codemirror/language\": \"6.12.3\",\n    \"@codemirror/state\": \"6.6.0\",\n    \"@codemirror/view\": \"6.40.0\",\n    \"@dnd-kit/core\": \"6.1.0\",\n    \"@dnd-kit/modifiers\": \"7.0.0\",\n    \"@dnd-kit/sortable\": \"8.0.0\",\n    \"@dnd-kit/utilities\": \"3.2.2\",\n    \"@hookform/resolvers\": \"5.2.2\",\n    \"@radix-ui/react-use-controllable-state\": \"1.2.2\",\n    \"@segment/analytics-next\": \"1.72.0\",\n    \"@tanstack/query-db-collection\": \"1.0.12\",\n    \"@tanstack/react-db\": \"0.1.60\",\n    \"@tanstack/react-query\": \"5.51.1\",\n    \"@tanstack/react-table\": \"8.19.2\",\n    \"@tanstack/react-virtual\": \"3.13.11\",\n    \"@tiptap/core\": \"3.15.3\",\n    \"@tiptap/extension-bold\": \"3.15.3\",\n    \"@tiptap/extension-document\": \"3.15.3\",\n    \"@tiptap/extension-hard-break\": \"3.15.3\",\n    \"@tiptap/extension-history\": \"3.15.3\",\n    \"@tiptap/extension-image\": \"3.15.3\",\n    \"@tiptap/extension-italic\": \"3."
+            },
+            {
+              "id": "tpl_activepieces_activepieces_packages_web_src_lib_api_ts",
+              "slug": "activepieces/activepieces",
+              "file": "packages/web/src/lib/api.ts",
+              "language": "typescript",
+              "summary": "API route/handler template",
+              "snippet": "import { ApErrorParams, ErrorCode, isNil } from '@activepieces/shared';\nimport axios, {\n  AxiosError,\n  AxiosRequestConfig,\n  AxiosResponse,\n  HttpStatusCode,\n  isAxiosError,\n} from 'axios';\nimport qs from 'qs';\n\nimport { authenticationSession } from '@/lib/authentication-session';\nexport const isRunningCloudInDevMode = import.meta.env.MODE === 'cloud';\n\nexport const API_BASE_URL = isRunningCloudInDevMode\n  ? 'https://cloud.activepieces.com'\n  : window.location.origin;\nexport const API_URL = `${API_BASE_URL}/api`;\n\nconst disallowedRoutes = [\n  '/v1/managed-authn/external-token',\n  '/v1/authentication/sign-in',\n  '/v1/authentication/sign-up',\n  '/v1/authn/local/verify-email',\n  '/v1/authn/federated/login',\n  '/v1/authn/federated/claim',\n  '/v1/otp',\n  '/v1/human-input',\n  '/v1/authn/local/reset-password',\n  '/v1/user-invitations/accept',\n  '/v1/webhooks',\n];\n//This is important to avoid redirecting to sign-in page when the user is deleted for embedding scenarios\nconst ignroedGlobalErrorHandlerRoutes = ['/v1/users/me'];\nfunction isUrlRelative(url: string) {\n  return !url.startsWith('http') && !url.startsWith('https');\n}\n\nfunction globalErrorHandler(error: AxiosError) {\n  if (api.isEr"
+            },
+            {
+              "id": "tpl_activepieces_activepieces_packages_web_src_lib_route_utils_ts",
+              "slug": "activepieces/activepieces",
+              "file": "packages/web/src/lib/route-utils.ts",
+              "language": "typescript",
+              "summary": "API route/handler template",
+              "snippet": "import { Permission } from '@activepieces/shared';\n\nimport { authenticationSession } from './authentication-session';\n\nexport const routesThatRequireProjectId = {\n  runs: '/runs',\n  singleRun: '/runs/:runId',\n  flows: '/flows',\n  singleFlow: '/flows/:flowId',\n  automations: '/automations',\n  connections: '/connections',\n  singleConnection: '/connections/:connectionId',\n  tables: '/tables',\n  singleTable: '/tables/:tableId',\n  settings: '/settings',\n  releases: '/releases',\n  singleRelease: '/releases/:releaseId',\n};\n\nexport const determineDefaultRoute = (\n  checkAccess: (permission: Permission) => boolean,\n) => {\n  if (checkAccess(Permission.READ_FLOW) || checkAccess(Permission.READ_TABLE)) {\n    return authenticationSession.appendProjectRoutePrefix('/automations');\n  }\n  if (checkAccess(Permission.READ_RUN)) {\n    return authenticationSession.appendProjectRoutePrefix('/runs');\n  }\n  return authenticationSession.appendProjectRoutePrefix('/settings');\n};\n\nexport const NEW_FLOW_QUERY_PARAM = 'newFlow';\nexport const NEW_TABLE_QUERY_PARAM = 'newTable';"
+            },
+            {
+              "id": "tpl_activepieces_activepieces_packages_web_src_features_templates_api_templates_api_ts",
+              "slug": "activepieces/activepieces",
+              "file": "packages/web/src/features/templates/api/templates-api.ts",
+              "language": "typescript",
+              "summary": "API route/handler template",
+              "snippet": "import {\n  CreateTemplateRequestBody,\n  ListTemplatesRequestQuery,\n  Template,\n  SeekPage,\n  UpdateTemplateRequestBody,\n  Flag,\n} from '@activepieces/shared';\n\nimport { api } from '@/lib/api';\n\nexport const templatesApi = {\n  getTemplate(templateId: string) {\n    return api.get<Template>(`/v1/templates/${templateId}`);\n  },\n  create(request: CreateTemplateRequestBody) {\n    return api.post<Template>(`/v1/templates`, request);\n  },\n  update(templateId: string, request: UpdateTemplateRequestBody) {\n    return api.post<Template>(`/v1/templates/${templateId}`, request);\n  },\n  list(request: ListTemplatesRequestQuery) {\n    return api.get<SeekPage<Template>>(`/v1/templates`, request);\n  },\n  delete(templateId: string) {\n    return api.delete<void>(`/v1/templates/${templateId}`);\n  },\n  getCategories() {\n    return api.get<Flag>(`/v1/templates/categories`);\n  },\n};"
+            },
+            {
+              "id": "tpl_activepieces_activepieces_packages_web_src_features_templates_api_templates_telemetry_api_ts",
+              "slug": "activepieces/activepieces",
+              "file": "packages/web/src/features/templates/api/templates-telemetry-api.ts",
+              "language": "typescript",
+              "summary": "API route/handler template",
+              "snippet": "import { TemplateTelemetryEvent } from '@activepieces/shared';\n\nimport { api } from '@/lib/api';\n\nexport const templatesTelemetryApi = {\n  sendEvent(event: TemplateTelemetryEvent) {\n    return api.post<void>(`/v1/templates-telemetry/event`, event);\n  },\n};"
+            }
+          ]
+        },
+        {
+          "slug": "apify/crawlee",
+          "manifestName": "@crawlee/root",
+          "scripts": [
+            "postinstall",
+            "prepublishOnly",
+            "clean",
+            "build",
+            "ci:build",
+            "test",
+            "test:e2e",
+            "test:full",
+            "tsc-check-tests",
+            "coverage",
+            "publish:next",
+            "release:next"
+          ],
+          "dependencies": [
+            "@apify/eslint-config",
+            "@apify/log",
+            "@apify/tsconfig",
+            "@biomejs/biome",
+            "@commitlint/config-conventional",
+            "@playwright/browser-chromium",
+            "@playwright/browser-firefox",
+            "@playwright/browser-webkit",
+            "@stylistic/eslint-plugin",
+            "@types/content-type",
+            "@types/deep-equal",
+            "@types/domhandler",
+            "@types/express",
+            "@types/fs-extra",
+            "@types/inquirer",
+            "@types/is-ci",
+            "@types/lodash.isequal",
+            "@types/lodash.merge",
+            "@types/mime-types",
+            "@types/node",
+            "@types/proper-lockfile",
+            "@types/ps-tree",
+            "@types/rimraf",
+            "@types/sax",
+            "@types/semver",
+            "@types/stream-json",
+            "@types/yargs",
+            "@vitest/coverage-v8",
+            "apify",
+            "apify-node-curl-impersonate",
+            "basic-auth-parser",
+            "body-parser",
+            "camoufox-js",
+            "commitlint",
+            "cross-env",
+            "deep-equal",
+            "eslint",
+            "eslint-config-prettier",
+            "express",
+            "fs-extra"
+          ],
+          "keywords": [
+            "apify",
+            "headless",
+            "chrome",
+            "puppeteer",
+            "crawler",
+            "scraper"
+          ],
+          "readmeHighlights": [
+            "## Installation",
+            "### With Crawlee CLI",
+            "### Manual installation",
+            "### Installing pre-release versions",
+            "## 🛠 Features",
+            "- Single interface for **HTTP and headless browser** crawling",
+            "- Persistent **queue** for URLs to crawl (breadth & depth first)",
+            "- Pluggable **storage** of both tabular data and files",
+            "- Automatic **scaling** with available system resources",
+            "- Integrated **proxy rotation** and session management",
+            "- Lifecycles customizable with **hooks**",
+            "- **CLI** to bootstrap your projects"
+          ],
+          "frameworks": [
+            "express",
+            "playwright"
+          ],
+          "entrypoints": [],
+          "signatureCount": 12,
+          "templateCount": 6,
+          "sampleSignatures": [
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_16_guides_custom_http_client_implementation_ts_10",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/guides/custom-http-client/implementation.ts",
+              "line": 11,
+              "kind": "class",
+              "symbol": "CustomHttpClient",
+              "signature": "export class CustomHttpClient implements BaseHttpClient {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_16_deployment_aws_browsers_md_87",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/deployment/aws-browsers.md",
+              "line": 88,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_16_deployment_aws_cheerio_md_41",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/deployment/aws-cheerio.md",
+              "line": 42,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_16_deployment_aws_cheerio_md_73",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/deployment/aws-cheerio.md",
+              "line": 74,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_16_deployment_gcp_browsers_md_54",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/deployment/gcp-browsers.md",
+              "line": 55,
+              "kind": "route",
+              "symbol": "GET",
+              "signature": "app.get('/', async (req, res) => {",
+              "tags": [
+                "api"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_16_deployment_gcp_cheerio_md_55",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/deployment/gcp-cheerio.md",
+              "line": 56,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (req, res) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_15_deployment_aws_browsers_md_87",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.15/deployment/aws-browsers.md",
+              "line": 88,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_15_deployment_aws_cheerio_md_41",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.15/deployment/aws-cheerio.md",
+              "line": 42,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_15_deployment_aws_cheerio_md_73",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.15/deployment/aws-cheerio.md",
+              "line": 74,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_15_deployment_gcp_browsers_md_54",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.15/deployment/gcp-browsers.md",
+              "line": 55,
+              "kind": "route",
+              "symbol": "GET",
+              "signature": "app.get('/', async (req, res) => {",
+              "tags": [
+                "api"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_15_deployment_gcp_cheerio_md_55",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.15/deployment/gcp-cheerio.md",
+              "line": 56,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (req, res) => {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_apify_crawlee_website_versioned_docs_version_3_14_deployment_aws_browsers_md_87",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.14/deployment/aws-browsers.md",
+              "line": 88,
+              "kind": "function",
+              "symbol": "handler",
+              "signature": "export const handler = async (event, context) => {",
+              "tags": [
+                "general"
+              ]
+            }
+          ],
+          "sampleTemplates": [
+            {
+              "id": "tpl_apify_crawlee_package_json",
+              "slug": "apify/crawlee",
+              "file": "package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n    \"name\": \"@crawlee/root\",\n    \"private\": true,\n    \"description\": \"The scalable web crawling and scraping library for JavaScript/Node.js. Enables development of data extraction and web automation jobs (not only) with headless Chrome and Puppeteer.\",\n    \"workspaces\": [\n        \"packages/*\"\n    ],\n    \"keywords\": [\n        \"apify\",\n        \"headless\",\n        \"chrome\",\n        \"puppeteer\",\n        \"crawler\",\n        \"scraper\"\n    ],\n    \"author\": {\n        \"name\": \"Apify\",\n        \"email\": \"support@apify.com\",\n        \"url\": \"https://apify.com\"\n    },\n    \"contributors\": [\n        \"Jan Curn <jan@apify.com>\",\n        \"Marek Trunkat <marek@apify.com>\",\n        \"Ondra Urban <ondra@apify.com>\"\n    ],\n    \"license\": \"Apache-2.0\",\n    \"repository\": {\n        \"type\": \"git\",\n        \"url\": \"git+https://github.com/apify/crawlee\"\n    },\n    \"bugs\": {\n        \"url\": \"https://github.com/apify/crawlee/issues\"\n    },\n    \"homepage\": \"https://crawlee.dev\",\n    \"scripts\": {\n        \"postinstall\": \"npx husky install\",\n        \"prepublishOnly\": \"turbo run copy\",\n        \"clean\": \"turbo run clean && rimraf .turbo packages/*/.turbo packages/*/*.tsbuildinfo\",\n        \"build\": \"turbo run build && no"
+            },
+            {
+              "id": "tpl_apify_crawlee_website_package_json",
+              "slug": "apify/crawlee",
+              "file": "website/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n    \"scripts\": {\n        \"examples\": \"docusaurus-examples\",\n        \"postinstall\": \"npx patch-package\",\n        \"start\": \"rimraf .docusaurus && docusaurus start\",\n        \"start:fast\": \"rimraf .docusaurus && CRAWLEE_DOCS_FAST=1 docusaurus start\",\n        \"build\": \"rimraf .docusaurus && node --max_old_space_size=16000 node_modules/@docusaurus/core/bin/docusaurus.mjs build\",\n        \"publish-gh-pages\": \"docusaurus-publish\",\n        \"write-translations\": \"docusaurus write-translations\",\n        \"version\": \"docusaurus version\",\n        \"rename-version\": \"docusaurus rename-version\",\n        \"prettify\": \"prettier --write --config ./tools/docs-prettier.config.js ../docs/guides/*.md\",\n        \"swizzle\": \"docusaurus swizzle\",\n        \"deploy\": \"rimraf .docusaurus && node --max_old_space_size=16000 node_modules/@docusaurus/core/bin/docusaurus.mjs deploy\",\n        \"docusaurus\": \"docusaurus\",\n        \"postbuild\": \"node ./tools/joinLlmsFiles.mjs\"\n    },\n    \"devDependencies\": {\n        \"@apify/eslint-config-ts\": \"^0.4.0\",\n        \"@apify/tsconfig\": \"^0.1.0\",\n        \"@docusaurus/module-type-aliases\": \"3.10.0\",\n        \"@docusaurus/types\": \"3.10.0\",\n        \"@types/react\": \"^19.0.0\",\n        \""
+            },
+            {
+              "id": "tpl_apify_crawlee_website_versioned_docs_version_3_16_package_json",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"crawlee-docs\",\n  \"description\": \"Documentation and examples for Crawlee. This package is not published to npm, only used locally for TS build checks.\",\n  \"type\": \"module\",\n  \"packageManager\": \"yarn@4.10.3\",\n  \"scripts\": {\n    \"typecheck\": \"tsc --noEmit\"\n  },\n  \"devDependencies\": {\n    \"typescript\": \"^6.0.0\"\n  },\n  \"dependencies\": {\n    \"playwright-extra\": \"^4.3.6\",\n    \"puppeteer-extra\": \"^3.3.6\",\n    \"puppeteer-extra-plugin-stealth\": \"^2.11.2\"\n  }\n}"
+            },
+            {
+              "id": "tpl_apify_crawlee_website_versioned_docs_version_3_16_api_packages_json",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/api-packages.json",
+              "language": "json",
+              "summary": "API route/handler template",
+              "snippet": "[{\"entryPoints\":{\"index\":{\"label\":\"Index\",\"path\":\"src/index.ts\"}},\"packageRoot\":\"../packages/core\",\"packagePath\":\"packages/core\",\"packageSlug\":\"core\",\"packageName\":\"@crawlee/core\",\"packageVersion\":\"3.16.0\"},{\"entryPoints\":{\"index\":{\"label\":\"Index\",\"path\":\"src/index.ts\"}},\"packageRoot\":\"../packages/browser-pool\",\"packagePath\":\"packages/browser-pool\",\"packageSlug\":\"browser-pool\",\"packageName\":\"@crawlee/browser-pool\",\"packageVersion\":\"3.16.0\"},{\"entryPoints\":{\"index\":{\"label\":\"Index\",\"path\":\"src/index.ts\"}},\"packageRoot\":\"../packages/basic-crawler\",\"packagePath\":\"packages/basic-crawler\",\"packageSlug\":\"basic-crawler\",\"packageName\":\"@crawlee/basic\",\"packageVersion\":\"3.16.0\"},{\"entryPoints\":{\"index\":{\"label\":\"Index\",\"path\":\"src/index.ts\"}},\"packageRoot\":\"../packages/browser-crawler\",\"packagePath\":\"packages/browser-crawler\",\"packageSlug\":\"browser-crawler\",\"packageName\":\"@crawlee/browser\",\"packageVersion\":\"3.16.0\"},{\"entryPoints\":{\"index\":{\"label\":\"Index\",\"path\":\"src/index.ts\"}},\"packageRoot\":\"../packages/http-crawler\",\"packagePath\":\"packages/http-crawler\",\"packageSlug\":\"http-crawler\",\"packageName\":\"@crawlee/http\",\"packageVersion\":\"3.16.0\"},{\"entryPoints\":{\"index\":{\"label\":\"Index\",\"path\":\""
+            },
+            {
+              "id": "tpl_apify_crawlee_website_versioned_docs_version_3_16_api_typedoc_json",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/api-typedoc.json",
+              "language": "json",
+              "summary": "API route/handler template",
+              "snippet": "{\n    \"id\": 0,\n    \"name\": \"@crawlee/root\",\n    \"variant\": \"project\",\n    \"kind\": 1,\n    \"flags\": {},\n    \"children\": [\n        {\n            \"id\": 11,\n            \"name\": \"@crawlee/stagehand\",\n            \"variant\": \"declaration\",\n            \"kind\": 2,\n            \"flags\": {},\n            \"comment\": {\n                \"summary\": [\n                    {\n                        \"kind\": \"text\",\n                        \"text\": \"AI-powered web crawling with Stagehand integration for Crawlee.\\n\\nThis package provides \"\n                    },\n                    {\n                        \"kind\": \"inline-tag\",\n                        \"tag\": \"@apilink\",\n                        \"text\": \"StagehandCrawler\"\n                    },\n                    {\n                        \"kind\": \"text\",\n                        \"text\": \", which extends \"\n                    },\n                    {\n                        \"kind\": \"inline-tag\",\n                        \"tag\": \"@apilink\",\n                        \"text\": \"BrowserCrawler\"\n                    },\n                    {\n                        \"kind\": \"text\",\n                        \"text\": \"\\nwith natural language browser automation capabilities po"
+            },
+            {
+              "id": "tpl_apify_crawlee_website_versioned_docs_version_3_16_guides_http_clients_cheerio_got_scraping_example_ts",
+              "slug": "apify/crawlee",
+              "file": "website/versioned_docs/version-3.16/guides/http-clients/cheerio-got-scraping-example.ts",
+              "language": "typescript",
+              "summary": "API route/handler template",
+              "snippet": "import { CheerioCrawler, GotScrapingHttpClient } from 'crawlee';\n\nconst crawler = new CheerioCrawler({\n    httpClient: new GotScrapingHttpClient(),\n    async requestHandler() {\n        /* ... */\n    },\n});"
+            }
+          ]
+        },
+        {
+          "slug": "microsoft/playwright",
+          "manifestName": "playwright-internal",
+          "scripts": [
+            "ctest",
+            "ftest",
+            "wtest",
+            "atest",
+            "etest",
+            "itest",
+            "stest",
+            "biditest",
+            "ttest",
+            "ct",
+            "test",
+            "test-mcp"
+          ],
+          "dependencies": [
+            "@actions/core",
+            "@actions/github",
+            "@babel/code-frame",
+            "@eslint/compat",
+            "@eslint/eslintrc",
+            "@eslint/js",
+            "@modelcontextprotocol/sdk",
+            "@octokit/graphql-schema",
+            "@stylistic/eslint-plugin",
+            "@types/codemirror",
+            "@types/debug",
+            "@types/diff",
+            "@types/formidable",
+            "@types/ini",
+            "@types/mime",
+            "@types/minimatch",
+            "@types/node",
+            "@types/pngjs",
+            "@types/progress",
+            "@types/proper-lockfile",
+            "@types/proxy-from-env",
+            "@types/react",
+            "@types/react-dom",
+            "@types/source-map-support",
+            "@types/stack-utils",
+            "@types/stoppable",
+            "@types/ws",
+            "@types/xml2js",
+            "@types/yauzl",
+            "@types/yazl",
+            "@typescript-eslint/eslint-plugin",
+            "@typescript-eslint/parser",
+            "@typescript-eslint/utils",
+            "@vitejs/plugin-basic-ssl",
+            "@vitejs/plugin-react",
+            "@zip.js/zip.js",
+            "chokidar",
+            "chromium-bidi",
+            "colors",
+            "commander"
+          ],
+          "keywords": [],
+          "readmeHighlights": [
+            "# 🎭 Playwright",
+            "## [Documentation](https://playwright.dev) | [API reference](https://playwright.dev/docs/api/class-playwright)",
+            "## Get Started",
+            "---",
+            "## Playwright Test",
+            "### Install",
+            "### Write a test",
+            "### Run tests",
+            "### Key capabilities",
+            "**Locators.** Find elements with resilient locators that mirror how users see the page:",
+            "**Parallelism.** Tests run in parallel by default across all configured browsers.",
+            "---"
+          ],
+          "frameworks": [
+            "react"
+          ],
+          "entrypoints": [],
+          "signatureCount": 12,
+          "templateCount": 6,
+          "sampleSignatures": [
+            {
+              "id": "sig_microsoft_playwright_utils_generate_channels_js_134",
+              "slug": "microsoft/playwright",
+              "file": "utils/generate_channels.js",
+              "line": 135,
+              "kind": "type",
+              "symbol": "Binary",
+              "signature": "export type Binary = Buffer;",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_generate_channels_js_136",
+              "slug": "microsoft/playwright",
+              "file": "utils/generate_channels.js",
+              "line": 137,
+              "kind": "type",
+              "symbol": "Channel",
+              "signature": "export interface Channel {",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_86",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 87,
+              "kind": "type",
+              "symbol": "Events",
+              "signature": "export type Events = {${json.domains.map(domain => (domain.events || []).map(event => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_89",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 90,
+              "kind": "type",
+              "symbol": "EventMap",
+              "signature": "export type EventMap = {${json.domains.map(domain => (domain.events || []).map(event => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_92",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 93,
+              "kind": "type",
+              "symbol": "CommandParameters",
+              "signature": "export interface CommandParameters {${json.domains.map(domain => (domain.commands || []).filter(conditionFilter).map(command => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_95",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 96,
+              "kind": "type",
+              "symbol": "CommandReturnValues",
+              "signature": "export interface CommandReturnValues {${json.domains.map(domain => (domain.commands || []).filter(conditionFilter).map(command => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_190",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 191,
+              "kind": "type",
+              "symbol": "EventMap",
+              "signature": "export type EventMap = {${domains.map(([domainName, domain]) => Object.keys(domain.events).map(eventName => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_193",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 194,
+              "kind": "type",
+              "symbol": "CommandParameters",
+              "signature": "export interface CommandParameters {${domains.map(([domainName, domain]) => Object.keys(domain.methods).map(commandName => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_protocol_types_generator_index_js_196",
+              "slug": "microsoft/playwright",
+              "file": "utils/protocol-types-generator/index.js",
+              "line": 197,
+              "kind": "type",
+              "symbol": "CommandReturnValues",
+              "signature": "export interface CommandReturnValues {${domains.map(([domainName, domain]) => Object.keys(domain.methods).map(commandName => `",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_generate_types_overrides_test_d_ts_19",
+              "slug": "microsoft/playwright",
+              "file": "utils/generate_types/overrides-test.d.ts",
+              "line": 20,
+              "kind": "type",
+              "symbol": "BlobReporterOptions",
+              "signature": "export type BlobReporterOptions = { outputDir?: string, fileName?: string };",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_generate_types_overrides_test_d_ts_20",
+              "slug": "microsoft/playwright",
+              "file": "utils/generate_types/overrides-test.d.ts",
+              "line": 21,
+              "kind": "type",
+              "symbol": "ListReporterOptions",
+              "signature": "export type ListReporterOptions = { printSteps?: boolean };",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_microsoft_playwright_utils_generate_types_overrides_test_d_ts_21",
+              "slug": "microsoft/playwright",
+              "file": "utils/generate_types/overrides-test.d.ts",
+              "line": 22,
+              "kind": "type",
+              "symbol": "JUnitReporterOptions",
+              "signature": "export type JUnitReporterOptions = { outputFile?: string, stripANSIControlSequences?: boolean, includeProjectInTestName?: boolean, includeRetries?: boolean };",
+              "tags": [
+                "general"
+              ]
+            }
+          ],
+          "sampleTemplates": [
+            {
+              "id": "tpl_microsoft_playwright_package_json",
+              "slug": "microsoft/playwright",
+              "file": "package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"playwright-internal\",\n  \"private\": true,\n  \"version\": \"1.60.0-next\",\n  \"description\": \"A high-level API to automate web browsers\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/microsoft/playwright.git\"\n  },\n  \"homepage\": \"https://playwright.dev\",\n  \"engines\": {\n    \"node\": \">=18\"\n  },\n  \"author\": {\n    \"name\": \"Microsoft Corporation\"\n  },\n  \"license\": \"Apache-2.0\",\n  \"scripts\": {\n    \"ctest\": \"playwright test --config=tests/library/playwright.config.ts --project=chromium-*\",\n    \"ftest\": \"playwright test --config=tests/library/playwright.config.ts --project=firefox-*\",\n    \"wtest\": \"playwright test --config=tests/library/playwright.config.ts --project=webkit-*\",\n    \"atest\": \"playwright test --config=tests/android/playwright.config.ts\",\n    \"etest\": \"playwright test --config=tests/electron/playwright.config.ts\",\n    \"itest\": \"playwright test --config=tests/installation/playwright.config.ts\",\n    \"stest\": \"playwright test --config=tests/stress/playwright.config.ts\",\n    \"biditest\": \"playwright test --config=tests/bidi/playwright.config.ts\",\n    \"ttest\": \"node ./tests/playwright-test/stable-test-runner/node_modules/@playwright/test/cli test --c"
+            },
+            {
+              "id": "tpl_microsoft_playwright_utils_flakiness_dashboard_package_json",
+              "slug": "microsoft/playwright",
+              "file": "utils/flakiness-dashboard/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"flakiness-dashboard\",\n  \"version\": \"\",\n  \"description\": \"\",\n  \"main\": \"processing/index.js\",\n  \"author\": \"\",\n  \"dependencies\": {\n    \"@azure/identity\": \"^4.10.2\",\n    \"@azure/storage-blob\": \"^12.27.0\"\n  }\n}"
+            },
+            {
+              "id": "tpl_microsoft_playwright_tests_playwright_test_stable_test_runner_package_json",
+              "slug": "microsoft/playwright",
+              "file": "tests/playwright-test/stable-test-runner/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"private\": true,\n  \"dependencies\": {\n    \"@playwright/test\": \"^1.60.0-alpha-2026-04-13\"\n  }\n}"
+            },
+            {
+              "id": "tpl_microsoft_playwright_tests_installation_playwright_test_plugin_package_json",
+              "slug": "microsoft/playwright",
+              "file": "tests/installation/playwright-test-plugin/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"playwright-test-plugin\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"peerDependencies\": {\n    \"@playwright/test\": \"1.x\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}"
+            },
+            {
+              "id": "tpl_microsoft_playwright_tests_electron_package_json",
+              "slug": "microsoft/playwright",
+              "file": "tests/electron/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"my-electron-app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Hello World!\",\n  \"main\": \"main.js\",\n  \"author\": \"Jane Doe\",\n  \"license\": \"MIT\"\n}"
+            },
+            {
+              "id": "tpl_microsoft_playwright_tests_components_ct_vue_vite_package_json",
+              "slug": "microsoft/playwright",
+              "file": "tests/components/ct-vue-vite/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"ct-vue-vite\",\n  \"version\": \"0.0.0\",\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"vite build\",\n    \"preview\": \"vite preview --port 5050\",\n    \"typecheck\": \"vue-tsc --noEmit\"\n  },\n  \"dependencies\": {\n    \"vue\": \"^3.4.0\",\n    \"vue-router\": \"^4.1.5\"\n  },\n  \"devDependencies\": {\n    \"@vitejs/plugin-vue\": \"^5.2.0\",\n    \"@vue/tsconfig\": \"^0.5.1\",\n    \"typescript\": \"5.6.2\",\n    \"vite\": \"^5.2.8\",\n    \"vue-tsc\": \"^2.0.21\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "slug": "n8n-io/n8n",
+          "manifestName": "n8n-monorepo",
+          "scripts": [
+            "prepare",
+            "preinstall",
+            "build",
+            "build:n8n",
+            "build:deploy",
+            "build:docker",
+            "build:docker:coverage",
+            "build:docker:scan",
+            "build:docker:clean",
+            "build:docker:test",
+            "typecheck",
+            "dev"
+          ],
+          "dependencies": [
+            "@babel/preset-env",
+            "@biomejs/biome",
+            "@dotenvx/dotenvx",
+            "@n8n/eslint-config",
+            "@types/jest",
+            "@types/node",
+            "@types/supertest",
+            "babel-plugin-transform-import-meta",
+            "cross-env",
+            "eslint",
+            "jest",
+            "jest-environment-jsdom",
+            "jest-expect-message",
+            "jest-junit",
+            "jest-mock",
+            "jest-mock-extended",
+            "lefthook",
+            "license-checker",
+            "nock",
+            "nodemon",
+            "npm-run-all2",
+            "p-limit",
+            "rimraf",
+            "supertest",
+            "ts-jest",
+            "tsc-alias",
+            "tsc-watch",
+            "turbo",
+            "typescript",
+            "zx"
+          ],
+          "keywords": [],
+          "readmeHighlights": [
+            "# n8n - Secure Workflow Automation for Technical Teams",
+            "## Key Capabilities",
+            "- **Code When You Need It**: Write JavaScript/Python, add npm packages, or use the visual interface",
+            "- **AI-Native Platform**: Build AI agent workflows based on LangChain with your own data and models",
+            "- **Full Control**: Self-host with our fair-code license or use our [cloud offering](https://app.n8n.cloud/login)",
+            "- **Enterprise-Ready**: Advanced permissions, SSO, and air-gapped deployments",
+            "- **Active Community**: 400+ integrations and 900+ ready-to-use [templates](https://n8n.io/workflows)",
+            "## Quick Start",
+            "## Resources",
+            "- 📚 [Documentation](https://docs.n8n.io)",
+            "- 🔧 [400+ Integrations](https://n8n.io/integrations)",
+            "- 💡 [Example Workflows](https://n8n.io/workflows)"
+          ],
+          "frameworks": [],
+          "entrypoints": [],
+          "signatureCount": 12,
+          "templateCount": 6,
+          "sampleSignatures": [
+            {
+              "id": "sig_n8n_io_n8n_agents_md_122",
+              "slug": "n8n-io/n8n",
+              "file": "AGENTS.md",
+              "line": 123,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "import { getParentNodes, getChildNodes, mapConnectionsByDestination } from 'n8n-workflow';",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_9",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 10,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **ai-builder:** Unify post-build credential setup into single setup-workflow flow ([#28273](https://github.com/n8n-io/n8n/issues/28273)) ([8f8b70a](https://github.com/n8n-io/n8n/",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_17",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 18,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** Decrease workflow history compaction retention periods ([#27763](https://github.com/n8n-io/n8n/issues/27763)) ([ccd4fd0](https://github.com/n8n-io/n8n/commit/ccd4fd0fc8",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_23",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 24,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** Increase timing delays in workflow publish history tests ([#28301](https://github.com/n8n-io/n8n/issues/28301)) ([b353143](https://github.com/n8n-io/n8n/commit/b3531435",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_24",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 25,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** MCP tools called after workflow execution failure ([#28021](https://github.com/n8n-io/n8n/issues/28021)) ([2e56ba1](https://github.com/n8n-io/n8n/commit/2e56ba137d450e2",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_35",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 36,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **editor:** Skip only current step when clicking Later in workflow setup ([#27929](https://github.com/n8n-io/n8n/issues/27929)) ([91a1282](https://github.com/n8n-io/n8n/commit/91",
+              "tags": [
+                "workflow",
+                "data"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_63",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 64,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **ai-builder:** Workflow evaluation framework with LLM mock execution ([#27818](https://github.com/n8n-io/n8n/issues/27818)) ([2383749](https://github.com/n8n-io/n8n/commit/23837",
+              "tags": [
+                "workflow",
+                "ai"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_74",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 75,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** Emit audit events for workflow activation on bootup ([#28126](https://github.com/n8n-io/n8n/issues/28126)) ([4ccd727](https://github.com/n8n-io/n8n/commit/4ccd72716e7f5",
+              "tags": [
+                "workflow",
+                "governance"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_78",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 79,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** Support projectId when creating workflow via public API ([#27884](https://github.com/n8n-io/n8n/issues/27884)) ([524166e](https://github.com/n8n-io/n8n/commit/524166e0f",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_113",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 114,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** Support descriptions when updating workflows via public API ([#27679](https://github.com/n8n-io/n8n/issues/27679)) ([573bcde](https://github.com/n8n-io/n8n/commit/573bc",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_127",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 128,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* Add --init-workflow flag to scaffold publish.yml ([#27292](https://github.com/n8n-io/n8n/issues/27292)) ([34894af](https://github.com/n8n-io/n8n/commit/34894af3fa9acf1da6d9253020",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_n8n_io_n8n_changelog_md_149",
+              "slug": "n8n-io/n8n",
+              "file": "CHANGELOG.md",
+              "line": 150,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "* **core:** OTEL - workflow node tracing ([#27789](https://github.com/n8n-io/n8n/issues/27789)) ([cbe109a](https://github.com/n8n-io/n8n/commit/cbe109a4cc5e0883109bcff6fac88761816a",
+              "tags": [
+                "workflow"
+              ]
+            }
+          ],
+          "sampleTemplates": [
+            {
+              "id": "tpl_n8n_io_n8n_packages_workflow_package_json",
+              "slug": "n8n-io/n8n",
+              "file": "packages/workflow/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"n8n-workflow\",\n  \"version\": \"2.17.0\",\n  \"description\": \"Workflow base code of n8n\",\n  \"types\": \"dist/esm/index.d.ts\",\n  \"module\": \"dist/esm/index.js\",\n  \"main\": \"dist/cjs/index.js\",\n  \"exports\": {\n    \".\": {\n      \"types\": \"./dist/esm/index.d.ts\",\n      \"import\": \"./dist/esm/index.js\",\n      \"require\": \"./dist/cjs/index.js\"\n    },\n    \"./common\": {\n      \"types\": \"./dist/esm/common/index.d.ts\",\n      \"import\": \"./dist/esm/common/index.js\",\n      \"require\": \"./dist/cjs/common/index.js\"\n    },\n    \"./*\": \"./*\"\n  },\n  \"scripts\": {\n    \"clean\": \"rimraf dist .turbo\",\n    \"dev\": \"pnpm watch\",\n    \"typecheck\": \"tsc --noEmit\",\n    \"build:vite\": \"vite build\",\n    \"build\": \"tsc --build tsconfig.build.esm.json tsconfig.build.cjs.json\",\n    \"format\": \"biome format --write .\",\n    \"format:check\": \"biome ci .\",\n    \"lint\": \"eslint src --quiet\",\n    \"lint:fix\": \"eslint src --fix\",\n    \"watch\": \"tsc --build tsconfig.build.esm.json tsconfig.build.cjs.json --watch\",\n    \"test\": \"vitest run\",\n    \"test:unit\": \"vitest run\",\n    \"test:dev\": \"vitest --watch\"\n  },\n  \"files\": [\n    \"dist/**/*\"\n  ],\n  \"devDependencies\": {\n    \"@langchain/core\": \"catalog:\",\n    \"@n8n/config\": \"workspace:*\","
+            },
+            {
+              "id": "tpl_n8n_io_n8n_packages_testing_rules_engine_package_json",
+              "slug": "n8n-io/n8n",
+              "file": "packages/testing/rules-engine/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n\t\"name\": \"@n8n/rules-engine\",\n\t\"private\": true,\n\t\"version\": \"0.1.0\",\n\t\"description\": \"Lightweight rules engine for registering, running, and reporting rule violations\",\n\t\"main\": \"dist/index.js\",\n\t\"types\": \"dist/index.d.ts\",\n\t\"files\": [\n\t\t\"dist\"\n\t],\n\t\"scripts\": {\n\t\t\"build\": \"tsc -p tsconfig.build.json\",\n\t\t\"dev\": \"tsc --watch\",\n\t\t\"test\": \"vitest run\",\n\t\t\"test:unit\": \"vitest run\",\n\t\t\"test:watch\": \"vitest\",\n\t\t\"format\": \"biome format --write .\",\n\t\t\"format:check\": \"biome ci .\",\n\t\t\"lint\": \"eslint . --quiet\",\n\t\t\"lint:fix\": \"eslint . --fix\",\n\t\t\"typecheck\": \"tsc --noEmit\"\n\t},\n\t\"license\": \"MIT\",\n\t\"devDependencies\": {\n\t\t\"@n8n/vitest-config\": \"workspace:*\",\n\t\t\"@vitest/coverage-v8\": \"catalog:\",\n\t\t\"tsx\": \"catalog:\",\n\t\t\"typescript\": \"catalog:\",\n\t\t\"vitest\": \"catalog:\"\n\t}\n}"
+            },
+            {
+              "id": "tpl_n8n_io_n8n_packages_workflow_src_errors_node_api_error_ts",
+              "slug": "n8n-io/n8n",
+              "file": "packages/workflow/src/errors/node-api.error.ts",
+              "language": "typescript",
+              "summary": "API route/handler template",
+              "snippet": "/* eslint-disable @typescript-eslint/no-unsafe-member-access */\n/* eslint-disable @typescript-eslint/no-unsafe-argument */\nimport type { AxiosError } from 'axios';\nimport { parseString } from 'xml2js';\n\nimport { NodeError } from './abstract/node.error';\nimport type { ErrorLevel } from '@n8n/errors';\nimport {\n\tNO_OP_NODE_TYPE,\n\tUNKNOWN_ERROR_DESCRIPTION,\n\tUNKNOWN_ERROR_MESSAGE,\n\tUNKNOWN_ERROR_MESSAGE_CRED,\n} from '../constants';\nimport type {\n\tINode,\n\tJsonObject,\n\tIDataObject,\n\tIStatusCodeMessages,\n\tFunctionality,\n\tRelatedExecution,\n} from '../interfaces';\nimport { removeCircularRefs } from '../utils';\n\nexport interface NodeOperationErrorOptions {\n\tmessage?: string;\n\tdescription?: string;\n\trunIndex?: number;\n\titemIndex?: number;\n\tlevel?: ErrorLevel;\n\tmessageMapping?: { [key: string]: string }; // allows to pass custom mapping for error messages scoped to a node\n\tfunctionality?: Functionality;\n\ttype?: string;\n\tmetadata?: {\n\t\tsubExecution?: RelatedExecution;\n\t\tparentExecution?: RelatedExecution;\n\t};\n}\n\ninterface NodeApiErrorOptions extends NodeOperationErrorOptions {\n\tmessage?: string;\n\thttpCode?: string;\n\tparseXml?: boolean;\n}"
+            },
+            {
+              "id": "tpl_n8n_io_n8n_package_json",
+              "slug": "n8n-io/n8n",
+              "file": "package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"n8n-monorepo\",\n  \"version\": \"2.17.0\",\n  \"private\": true,\n  \"engines\": {\n    \"node\": \">=22.16\",\n    \"pnpm\": \">=10.22.0\"\n  },\n  \"packageManager\": \"pnpm@10.32.1\",\n  \"scripts\": {\n    \"prepare\": \"node scripts/prepare.mjs\",\n    \"preinstall\": \"node scripts/block-npm-install.js\",\n    \"build\": \"turbo run build\",\n    \"build:n8n\": \"node scripts/build-n8n.mjs\",\n    \"build:deploy\": \"node scripts/build-n8n.mjs\",\n    \"build:docker\": \"node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs\",\n    \"build:docker:coverage\": \"BUILD_WITH_COVERAGE=true node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs\",\n    \"build:docker:scan\": \"node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs && node scripts/scan-n8n-image.mjs\",\n    \"build:docker:clean\": \"TURBO_FORCE=true node scripts/build-n8n.mjs && DOCKER_BUILD_NO_CACHE=true DOCKER_BUILD_BASE_IMAGE=true node scripts/dockerize-n8n.mjs\",\n    \"build:docker:test\": \"node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs && turbo run test:container:standard --filter=n8n-playwright\",\n    \"typecheck\": \"turbo typecheck\",\n    \"dev\": \"turbo run dev --parallel --env-mode=loose --filter=!@n8n/design-system --filter=!@n8n/chat --filte"
+            },
+            {
+              "id": "tpl_n8n_io_n8n_packages_testing_playwright_package_json",
+              "slug": "n8n-io/n8n",
+              "file": "packages/testing/playwright/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"n8n-playwright\",\n  \"private\": true,\n  \"scripts\": {\n    \"dev\": \"N8N_BASE_URL=http://localhost:5678 N8N_EDITOR_URL=http://localhost:8080 RESET_E2E_DB=true playwright test --project=e2e\",\n    \"test:all\": \"playwright test\",\n    \"test:local\": \"N8N_BASE_URL=http://localhost:5680 RESET_E2E_DB=true playwright test --project=e2e\",\n    \"test:local:isolated\": \"node scripts/run-local-isolated.mjs\",\n    \"test:local:instance-ai\": \"node scripts/run-local-instance-ai.mjs\",\n    \"test:e2e\": \"playwright test --project=*e2e*\",\n    \"test:performance\": \"playwright test --project=performance\",\n    \"test:infrastructure\": \"playwright test --project='*:infrastructure'\",\n    \"test:benchmark\": \"playwright test --project='benchmark-*'\",\n    \"test:container:sqlite\": \"playwright test --project='sqlite:*'\",\n    \"test:container:sqlite:e2e\": \"playwright test --project='sqlite:e2e'\",\n    \"test:container:postgres\": \"playwright test --project='postgres:*'\",\n    \"test:container:queue\": \"playwright test --project='queue:*'\",\n    \"test:container:queue:e2e\": \"playwright test --project='queue:e2e'\",\n    \"test:container:multi-main\": \"playwright test --project='multi-main:*'\",\n    \"test:container:multi-main:e2e\""
+            },
+            {
+              "id": "tpl_n8n_io_n8n_packages_workflow_src_augment_object_ts",
+              "slug": "n8n-io/n8n",
+              "file": "packages/workflow/src/augment-object.ts",
+              "language": "typescript",
+              "summary": "Workflow graph structure template",
+              "snippet": "import type { IDataObject } from './interfaces';\n\nconst defaultPropertyDescriptor = Object.freeze({ enumerable: true, configurable: true });\n\n// eslint-disable-next-line @typescript-eslint/unbound-method\nconst { hasOwnProperty } = Object.prototype;\n\nconst augmentedObjects = new WeakSet<object>();\n\nfunction augment<T>(value: T): T {\n\tif (typeof value !== 'object' || value === null || value instanceof RegExp) return value;\n\tif (value instanceof Date) return new Date(value.valueOf()) as T;\n\tif (value instanceof Uint8Array) return value.slice() as T;\n\n\tif (Array.isArray(value)) return augmentArray(value) as T;\n\n\treturn augmentObject(value) as T;\n}\n\nexport function augmentArray<T>(data: T[]): T[] {\n\tif (augmentedObjects.has(data)) return data;\n\n\tlet newData: unknown[] | undefined = undefined;\n\n\tfunction getData(): unknown[] {\n\t\tif (newData === undefined) {\n\t\t\tnewData = [...data];\n\t\t}\n\t\treturn newData;\n\t}\n\n\tconst proxy = new Proxy(data, {\n\t\tdeleteProperty(_target, key: string) {\n\t\t\treturn Reflect.deleteProperty(getData(), key);\n\t\t},\n\t\tget(target, key: string, receiver): unknown {\n\t\t\tif (key === 'constructor') return Array;\n\t\t\tconst value = Reflect.get(newData ?? target, key, receiver) as"
+            }
+          ]
+        },
+        {
+          "slug": "PipedreamHQ/pipedream",
+          "manifestName": "pipedream",
+          "scripts": [
+            "prepare",
+            "build",
+            "test",
+            "test-all",
+            "platform-dist",
+            "platform-test",
+            "types-test",
+            "helpers-test",
+            "validate:packages",
+            "validate:packages:verbose",
+            "validate:packages:report",
+            "validate:packages:dry-run"
+          ],
+          "dependencies": [
+            "@actions/core",
+            "@pipedream/platform",
+            "@sentry/node",
+            "@types/node",
+            "linkup-sdk",
+            "uuid",
+            "vue",
+            "@eslint/eslintrc",
+            "@eslint/js",
+            "@next/eslint-plugin-next",
+            "@pipedream/eslint-plugin-pipedream",
+            "@pipedream/types",
+            "@tsconfig/node14",
+            "@types/glob",
+            "@types/jest",
+            "@typescript-eslint/eslint-plugin",
+            "@typescript-eslint/parser",
+            "eslint",
+            "eslint-config-next",
+            "eslint-plugin-import",
+            "eslint-plugin-jest",
+            "eslint-plugin-jsonc",
+            "eslint-plugin-putout",
+            "globals",
+            "graphql",
+            "graphql-request",
+            "husky",
+            "jest",
+            "lint-staged",
+            "pnpm",
+            "putout",
+            "renamer",
+            "ts-jest",
+            "typescript",
+            "typescript-eslint"
+          ],
+          "keywords": [
+            "pipedream",
+            "integration",
+            "api"
+          ],
+          "readmeHighlights": [
+            "- [The code for all pre-built integration components](https://github.com/PipedreamHQ/pipedream/tree/master/components)",
+            "- [The product roadmap](https://github.com/PipedreamHQ/pipedream/issues)",
+            "- [The Pipedream docs](https://github.com/PipedreamHQ/pipedream/tree/master/docs)",
+            "- And other source code related to Pipedream.",
+            "## Key Features",
+            "- [Free](#pricing) - No fees for individual developers (see [limits](https://docs.pipedream.com/limits/))",
+            "## Demo",
+            "### Workflows",
+            "### Event Sources",
+            "### Actions",
+            "### Custom code",
+            "# Python"
+          ],
+          "frameworks": [],
+          "entrypoints": [],
+          "signatureCount": 12,
+          "templateCount": 6,
+          "sampleSignatures": [
+            {
+              "id": "sig_pipedreamhq_pipedream_contributing_md_18",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "CONTRIBUTING.md",
+              "line": 19,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "If you have a workflow that others may find interesting -- whether it’s just a fun demo or solving a real problem -- make it public and share it in our [community](https://pipedrea",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_32",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 33,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "- [Workflows](#workflows) - Workflows run automations. Workflows are sequences of steps - pre-built actions or custom [Node.js](https://pipedream.com/docs/code/nodejs/), [Python](h",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_33",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 34,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "- [Event Sources](#event-sources) - Sources trigger workflows. They emit events from services like GitHub, Slack, Airtable, RSS and [more](https://pipedream.com/apps). When you wan",
+              "tags": [
+                "workflow",
+                "data"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_34",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 35,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "- [Actions](#actions) - Actions are pre-built code steps that you can use in a workflow to perform common operations across Pipedream's 1,000+ API integrations. For example, you ca",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_52",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 53,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "Workflows are sequences of linear [steps](https://pipedream.com/docs/workflows/steps) triggered by an event (like an HTTP request, or when a new row is added to a Google sheet). Yo",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_54",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 55,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "[See our workflow quickstart](https://pipedream.com/docs/quickstart/) to get started.",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_58",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 59,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "[Event Sources](https://pipedream.com/docs/sources/) watch for new data from services like GitHub, Slack, Airtable, RSS and [more](https://pipedream.com/apps). When a source finds ",
+              "tags": [
+                "workflow",
+                "data"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_83",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 84,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "[Actions](https://pipedream.com/docs/components/actions/) are pre-built code steps that you can use in a workflow to perform common operations across Pipedream's 500+ API integrati",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_85",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 86,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "You can [create your own actions](https://pipedream.com/docs/components/quickstart/nodejs/actions/), which you can re-use across workflows. You can also [publish actions to the ent",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_217",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 218,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "Pipedream has a [generous free tier](https://pipedream.com/docs/pricing/#developer-tier). You can run sources and workflows for free within the limits of the free tier. If you hit ",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_readme_md_221",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "README.md",
+              "line": 222,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "The Pipedream platform imposes some runtime limits on sources and workflows. [Read more about those in our docs](https://pipedream.com/docs/limits/).",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_pipedreamhq_pipedream_types_src_index_ts_5",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "types/src/index.ts",
+              "line": 6,
+              "kind": "type",
+              "symbol": "JSONValue",
+              "signature": "export type JSONValue =",
+              "tags": [
+                "general"
+              ]
+            }
+          ],
+          "sampleTemplates": [
+            {
+              "id": "tpl_pipedreamhq_pipedream_components_1shop_api_package_json",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "components/_1shop_api/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"@pipedream/_1shop_api\",\n  \"version\": \"0.0.1\",\n  \"description\": \"Pipedream 1Shot API Components\",\n  \"main\": \"_1shop_api.app.mjs\",\n  \"keywords\": [\n    \"pipedream\",\n    \"_1shop_api\"\n  ],\n  \"homepage\": \"https://pipedream.com/apps/_1shop_api\",\n  \"author\": \"Pipedream <support@pipedream.com> (https://pipedream.com/)\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  }\n}"
+            },
+            {
+              "id": "tpl_pipedreamhq_pipedream_components_z_api_package_json",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "components/z_api/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"@pipedream/z_api\",\n  \"version\": \"0.1.0\",\n  \"description\": \"Pipedream Z-API Components\",\n  \"main\": \"z_api.app.mjs\",\n  \"keywords\": [\n    \"pipedream\",\n    \"z_api\"\n  ],\n  \"homepage\": \"https://pipedream.com/apps/z_api\",\n  \"author\": \"Pipedream <support@pipedream.com> (https://pipedream.com/)\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  },\n  \"dependencies\": {\n    \"@pipedream/platform\": \"^3.1.1\"\n  }\n}"
+            },
+            {
+              "id": "tpl_pipedreamhq_pipedream_components_zyte_api_package_json",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "components/zyte_api/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"@pipedream/zyte_api\",\n  \"version\": \"0.0.1\",\n  \"description\": \"Pipedream Zyte API Components\",\n  \"main\": \"zyte_api.app.mjs\",\n  \"keywords\": [\n    \"pipedream\",\n    \"zyte_api\"\n  ],\n  \"homepage\": \"https://pipedream.com/apps/zyte_api\",\n  \"author\": \"Pipedream <support@pipedream.com> (https://pipedream.com/)\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  }\n}"
+            },
+            {
+              "id": "tpl_pipedreamhq_pipedream_components_zip_archive_api_package_json",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "components/zip_archive_api/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"@pipedream/zip_archive_api\",\n  \"version\": \"0.2.3\",\n  \"description\": \"Pipedream Zip Archive API Components\",\n  \"main\": \"zip_archive_api.app.mjs\",\n  \"keywords\": [\n    \"pipedream\",\n    \"zip_archive_api\"\n  ],\n  \"homepage\": \"https://pipedream.com/apps/zip_archive_api\",\n  \"author\": \"Pipedream <support@pipedream.com> (https://pipedream.com/)\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  },\n  \"dependencies\": {\n    \"@pipedream/platform\": \"^3.2.5\",\n    \"form-data\": \"^4.0.4\"\n  }\n}"
+            },
+            {
+              "id": "tpl_pipedreamhq_pipedream_components_youtube_data_api_custom_app_package_json",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "components/youtube_data_api_custom_app/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"@pipedream/youtube_data_api_custom_app\",\n  \"version\": \"0.0.9\",\n  \"description\": \"Pipedream Youtube Custom App Components\",\n  \"main\": \"youtube_data_api_custom_app.app.mjs\",\n  \"keywords\": [\n    \"pipedream\",\n    \"youtube_data_api_custom_app\"\n  ],\n  \"homepage\": \"https://pipedream.com/apps/youtube_data_api_custom_app\",\n  \"author\": \"Pipedream <support@pipedream.com> (https://pipedream.com/)\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  },\n  \"dependencies\": {\n    \"@googleapis/youtube\": \"^6.0.0\",\n    \"got\": \"^12.5.1\",\n    \"@pipedream/youtube_data_api\": \"^1.0.1\"\n  }\n}"
+            },
+            {
+              "id": "tpl_pipedreamhq_pipedream_components_youtube_data_api_package_json",
+              "slug": "PipedreamHQ/pipedream",
+              "file": "components/youtube_data_api/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"@pipedream/youtube_data_api\",\n  \"version\": \"1.0.2\",\n  \"description\": \"Pipedream Youtube Components\",\n  \"main\": \"youtube_data_api.app.mjs\",\n  \"keywords\": [\n    \"pipedream\",\n    \"youtube_data_api\"\n  ],\n  \"homepage\": \"https://pipedream.com/apps/youtube_data_api\",\n  \"author\": \"Pipedream <support@pipedream.com> (https://pipedream.com/)\",\n  \"dependencies\": {\n    \"@googleapis/youtube\": \"^6.0.0\",\n    \"@pipedream/platform\": \"^3.1.1\",\n    \"got\": \"^14.4.6\",\n    \"util\": \"^0.12.4\"\n  },\n  \"gitHead\": \"e12480b94cc03bed4808ebc6b13e7fdb3a1ba535\",\n  \"publishConfig\": {\n    \"access\": \"public\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "slug": "puppeteer/puppeteer",
+          "manifestName": "puppeteer-repo",
+          "scripts": [
+            "build",
+            "build:tools",
+            "check",
+            "clean",
+            "debug",
+            "docs",
+            "doctest",
+            "format",
+            "format:eslint",
+            "format:expectations",
+            "format:prettier",
+            "lint"
+          ],
+          "dependencies": [
+            "@actions/core",
+            "@babel/plugin-transform-class-properties",
+            "@babel/plugin-transform-class-static-block",
+            "@babel/plugin-transform-dynamic-import",
+            "@babel/plugin-transform-modules-commonjs",
+            "@babel/plugin-transform-private-methods",
+            "@babel/plugin-transform-private-property-in-object",
+            "@microsoft/api-extractor",
+            "@rollup/plugin-babel",
+            "@rollup/plugin-node-resolve",
+            "@stylistic/eslint-plugin",
+            "@types/mocha",
+            "@types/node",
+            "@types/semver",
+            "@types/sinon",
+            "typescript-eslint",
+            "esbuild",
+            "eslint-config-prettier",
+            "eslint-import-resolver-typescript",
+            "eslint-plugin-import",
+            "eslint-plugin-mocha",
+            "eslint-plugin-prettier",
+            "eslint-plugin-tsdoc",
+            "eslint-plugin-unused-imports",
+            "eslint",
+            "execa",
+            "expect",
+            "globals",
+            "hereby",
+            "license-checker",
+            "mocha",
+            "prettier",
+            "rollup",
+            "semver",
+            "sinon",
+            "source-map-support",
+            "spdx-satisfies",
+            "tsd",
+            "typescript",
+            "wireit"
+          ],
+          "keywords": [],
+          "readmeHighlights": [
+            "# Puppeteer",
+            "## Installation",
+            "## MCP",
+            "## Example"
+          ],
+          "frameworks": [],
+          "entrypoints": [],
+          "signatureCount": 12,
+          "templateCount": 6,
+          "sampleSignatures": [
+            {
+              "id": "sig_puppeteer_puppeteer_readme_md_2",
+              "slug": "puppeteer/puppeteer",
+              "file": "README.md",
+              "line": 3,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "[![build](https://github.com/puppeteer/puppeteer/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/puppeteer/puppeteer/actions/workflows/ci.yml)",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_contributing_md_275",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/contributing.md",
+              "line": 276,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "There is a [GitHub action](https://github.com/puppeteer/puppeteer/blob/main/.github/workflows/update-browser-pins.yml) that runs once per day.",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_contributing_md_276",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/contributing.md",
+              "line": 277,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "The action has a manual trigger that can be found on the [Actions Tab](https://github.com/puppeteer/puppeteer/actions/workflows/update-browser-pins.yml).",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_index_md_6",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/index.md",
+              "line": 7,
+              "kind": "workflow",
+              "symbol": "workflow",
+              "signature": "[![build](https://github.com/puppeteer/puppeteer/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/puppeteer/puppeteer/actions/workflows/ci.yml)",
+              "tags": [
+                "workflow"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_browserprovider_md_19",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.browserprovider.md",
+              "line": 20,
+              "kind": "type",
+              "symbol": "BrowserProvider",
+              "signature": "export interface BrowserProvider",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_downloadoptions_md_11",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.downloadoptions.md",
+              "line": 12,
+              "kind": "type",
+              "symbol": "DownloadOptions",
+              "signature": "export interface DownloadOptions",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_getinstalledbrowsersoptions_md_9",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.getinstalledbrowsersoptions.md",
+              "line": 10,
+              "kind": "type",
+              "symbol": "GetInstalledBrowsersOptions",
+              "signature": "export interface GetInstalledBrowsersOptions",
+              "tags": [
+                "data"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_installoptions_md_9",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.installoptions.md",
+              "line": 10,
+              "kind": "type",
+              "symbol": "InstallOptions",
+              "signature": "export interface InstallOptions",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_launchoptions_md_9",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.launchoptions.md",
+              "line": 10,
+              "kind": "type",
+              "symbol": "LaunchOptions",
+              "signature": "export interface LaunchOptions",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_metadata_md_9",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.metadata.md",
+              "line": 10,
+              "kind": "type",
+              "symbol": "Metadata",
+              "signature": "export interface Metadata",
+              "tags": [
+                "general"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_options_md_9",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.options.md",
+              "line": 10,
+              "kind": "type",
+              "symbol": "ComputeExecutablePathOptions",
+              "signature": "export interface ComputeExecutablePathOptions",
+              "tags": [
+                "data"
+              ]
+            },
+            {
+              "id": "sig_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_profileoptions_md_9",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.profileoptions.md",
+              "line": 10,
+              "kind": "type",
+              "symbol": "ProfileOptions",
+              "signature": "export interface ProfileOptions",
+              "tags": [
+                "general"
+              ]
+            }
+          ],
+          "sampleTemplates": [
+            {
+              "id": "tpl_puppeteer_puppeteer_package_json",
+              "slug": "puppeteer/puppeteer",
+              "file": "package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"puppeteer-repo\",\n  \"private\": true,\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/puppeteer/puppeteer\"\n  },\n  \"type\": \"module\",\n  \"scripts\": {\n    \"build\": \"wireit\",\n    \"build:tools\": \"wireit\",\n    \"check\": \"npm run check --workspaces --if-present\",\n    \"clean\": \"npm run clean --workspaces --if-present\",\n    \"debug\": \"mocha --inspect-brk\",\n    \"docs\": \"wireit\",\n    \"doctest\": \"wireit\",\n    \"format\": \"wireit\",\n    \"format:eslint\": \"wireit\",\n    \"format:expectations\": \"node tools/sort-test-expectations.mjs\",\n    \"format:prettier\": \"prettier --write --cache . \",\n    \"lint\": \"wireit\",\n    \"lint:eslint\": \"wireit\",\n    \"lint:prettier\": \"prettier --check --cache .\",\n    \"lint:expectations\": \"node tools/sort-test-expectations.mjs --lint\",\n    \"postinstall\": \"npm run postinstall --workspaces --if-present\",\n    \"prepare\": \"npm run prepare --workspaces --if-present\",\n    \"test\": \"wireit\",\n    \"test-install\": \"npm run test --workspace @puppeteer-test/installation\",\n    \"test-types\": \"wireit\",\n    \"test:chrome\": \"wireit\",\n    \"test:chrome:bidi\": \"wireit\",\n    \"test:chrome:bidi-only\": \"wireit\",\n    \"test:chrome:headful\": \"wireit\",\n    \"test:chrome:headless\": \""
+            },
+            {
+              "id": "tpl_puppeteer_puppeteer_website_package_json",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/package.json",
+              "language": "json",
+              "summary": "Dependency and script contract",
+              "snippet": "{\n  \"name\": \"website\",\n  \"version\": \"0.0.0\",\n  \"private\": true,\n  \"scripts\": {\n    \"docusaurus\": \"docusaurus\",\n    \"start\": \"docusaurus start\",\n    \"build\": \"docusaurus build\",\n    \"swizzle\": \"docusaurus swizzle\",\n    \"deploy\": \"docusaurus deploy\",\n    \"clear\": \"docusaurus clear\",\n    \"serve\": \"docusaurus serve\",\n    \"write-translations\": \"docusaurus write-translations\",\n    \"write-heading-ids\": \"docusaurus write-heading-ids\",\n    \"archive\": \"node archive.js\"\n  },\n  \"dependencies\": {\n    \"@docsearch/react\": \"4.6.2\",\n    \"@docusaurus/core\": \"3.10.0\",\n    \"@docusaurus/plugin-client-redirects\": \"3.10.0\",\n    \"@docusaurus/plugin-content-docs\": \"3.10.0\",\n    \"@docusaurus/preset-classic\": \"3.10.0\",\n    \"@docusaurus/remark-plugin-npm2yarn\": \"3.10.0\",\n    \"@docusaurus/theme-common\": \"3.10.0\",\n    \"@mdx-js/react\": \"3.1.1\",\n    \"algoliasearch-helper\": \"3.28.1\",\n    \"clsx\": \"2.1.1\",\n    \"prism-react-renderer\": \"2.4.1\",\n    \"react\": \"19.2.5\",\n    \"react-cookie-consent\": \"10.0.1\",\n    \"react-dom\": \"19.2.5\",\n    \"semver\": \"7.7.4\"\n  },\n  \"devDependencies\": {\n    \"@docusaurus/module-type-aliases\": \"3.10.0\",\n    \"@docusaurus/types\": \"3.10.0\",\n    \"@swc/core\": \"1.15.24\",\n    \"swc-loader\": \"0.2.7\""
+            },
+            {
+              "id": "tpl_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_api_puppeteer_adapterstate_md",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/api/puppeteer.adapterstate.md",
+              "language": "markdown",
+              "summary": "API route/handler template",
+              "snippet": "---\nsidebar_label: AdapterState\n---\n\n# AdapterState type\n\nEmulated bluetooth adapter state.\n\n### Signature\n\n```typescript\nexport type AdapterState = 'absent' | 'powered-off' | 'powered-on';\n```"
+            },
+            {
+              "id": "tpl_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_api_puppeteer_bluetoothemulation_emulateadapter_md",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/api/puppeteer.bluetoothemulation.emulateadapter.md",
+              "language": "markdown",
+              "summary": "API route/handler template",
+              "snippet": "---\nsidebar_label: BluetoothEmulation.emulateAdapter\n---\n\n# BluetoothEmulation.emulateAdapter() method\n\nEmulate Bluetooth adapter. Required for bluetooth simulations See [bluetooth.simulateAdapter](https://webbluetoothcg.github.io/web-bluetooth/#bluetooth-simulateAdapter-command).\n\n### Signature\n\n```typescript\ninterface BluetoothEmulation {\n  emulateAdapter(state: AdapterState, leSupported?: boolean): Promise<void>;\n}\n```\n\n## Parameters\n\n<table><thead><tr><th>\n\nParameter\n\n</th><th>\n\nType\n\n</th><th>\n\nDescription\n\n</th></tr></thead>\n<tbody><tr><td>\n\nstate\n\n</td><td>\n\n[AdapterState](./puppeteer.adapterstate.md)\n\n</td><td>\n\nThe desired bluetooth adapter state.\n\n</td></tr>"
+            },
+            {
+              "id": "tpl_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_api_puppeteer_downloadpolicy_md",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/api/puppeteer.downloadpolicy.md",
+              "language": "markdown",
+              "summary": "API route/handler template",
+              "snippet": "---\nsidebar_label: DownloadPolicy\n---\n\n# DownloadPolicy type\n\n### Signature\n\n```typescript\nexport type DownloadPolicy = 'deny' | 'allow' | 'allowAndName' | 'default';\n```"
+            },
+            {
+              "id": "tpl_puppeteer_puppeteer_website_versioned_docs_version_24_41_0_browsers_api_browsers_installedbrowser_readmetadata_md",
+              "slug": "puppeteer/puppeteer",
+              "file": "website/versioned_docs/version-24.41.0/browsers-api/browsers.installedbrowser.readmetadata.md",
+              "language": "markdown",
+              "summary": "API route/handler template",
+              "snippet": "---\nsidebar_label: InstalledBrowser.readMetadata\n---\n\n# InstalledBrowser.readMetadata() method\n\n### Signature\n\n```typescript\nclass InstalledBrowser {\n  readMetadata(): Metadata;\n}\n```\n\n**Returns:**\n\n[Metadata](./browsers.metadata.md)"
+            }
+          ]
+        }
+      ],
+      "adoptedTemplateKeys": [
+        "activepieces/activepieces:react",
+        "activepieces/activepieces:fastify",
+        "activepieces/activepieces:type:PackageJson",
+        "activepieces/activepieces:function:readPackageJson",
+        "activepieces/activepieces:function:readPackageEslint",
+        "activepieces/activepieces:function:writePackageEslint",
+        "apify/crawlee:express",
+        "apify/crawlee:playwright",
+        "apify/crawlee:class:CustomHttpClient",
+        "apify/crawlee:function:handler",
+        "microsoft/playwright:react",
+        "microsoft/playwright:type:Binary",
+        "microsoft/playwright:type:Channel",
+        "microsoft/playwright:type:Events",
+        "microsoft/playwright:type:EventMap",
+        "n8n-io/n8n:workflow:workflow",
+        "PipedreamHQ/pipedream:workflow:workflow",
+        "puppeteer/puppeteer:workflow:workflow"
+      ],
+      "enginePacks": [
+        {
+          "id": "pack_calendar",
+          "engineId": "calendar",
+          "title": "Calendar Pack",
+          "summary": "calendar engine synthesized from apify/crawlee, microsoft/playwright, n8n-io/n8n",
+          "sourceRepoSlugs": [
+            "apify/crawlee",
+            "microsoft/playwright",
+            "n8n-io/n8n"
+          ],
+          "frameworks": [
+            "express",
+            "playwright",
+            "react"
+          ],
+          "adoptedTemplateKeys": [
+            "apify/crawlee:express",
+            "apify/crawlee:playwright",
+            "apify/crawlee:class:CustomHttpClient",
+            "apify/crawlee:function:handler",
+            "microsoft/playwright:react",
+            "microsoft/playwright:type:Binary",
+            "microsoft/playwright:type:Channel",
+            "microsoft/playwright:type:Events"
+          ],
+          "capabilities": [
+            "apify",
+            "headless",
+            "chrome",
+            "puppeteer",
+            "crawler",
+            "scraper"
+          ]
+        },
+        {
+          "id": "pack_document",
+          "engineId": "document",
+          "title": "Document Pack",
+          "summary": "document engine synthesized from microsoft/playwright, n8n-io/n8n",
+          "sourceRepoSlugs": [
+            "microsoft/playwright",
+            "n8n-io/n8n"
+          ],
+          "frameworks": [
+            "react"
+          ],
+          "adoptedTemplateKeys": [
+            "microsoft/playwright:react",
+            "microsoft/playwright:type:Binary",
+            "microsoft/playwright:type:Channel",
+            "microsoft/playwright:type:Events",
+            "microsoft/playwright:type:EventMap",
+            "n8n-io/n8n:workflow:workflow"
+          ],
+          "capabilities": []
+        },
+        {
+          "id": "pack_dashboard",
+          "engineId": "dashboard",
+          "title": "Dashboard Pack",
+          "summary": "dashboard engine synthesized from microsoft/playwright",
+          "sourceRepoSlugs": [
+            "microsoft/playwright"
+          ],
+          "frameworks": [
+            "react"
+          ],
+          "adoptedTemplateKeys": [
+            "microsoft/playwright:react",
+            "microsoft/playwright:type:Binary",
+            "microsoft/playwright:type:Channel",
+            "microsoft/playwright:type:Events",
+            "microsoft/playwright:type:EventMap"
+          ],
+          "capabilities": []
+        },
+        {
+          "id": "pack_issues",
+          "engineId": "issues",
+          "title": "Issues Pack",
+          "summary": "issues engine synthesized from microsoft/playwright, n8n-io/n8n, activepieces/activepieces",
+          "sourceRepoSlugs": [
+            "microsoft/playwright",
+            "n8n-io/n8n",
+            "activepieces/activepieces"
+          ],
+          "frameworks": [
+            "react",
+            "fastify"
+          ],
+          "adoptedTemplateKeys": [
+            "microsoft/playwright:react",
+            "microsoft/playwright:type:Binary",
+            "microsoft/playwright:type:Channel",
+            "microsoft/playwright:type:Events",
+            "microsoft/playwright:type:EventMap",
+            "n8n-io/n8n:workflow:workflow",
+            "activepieces/activepieces:react",
+            "activepieces/activepieces:fastify"
+          ],
+          "capabilities": []
+        },
+        {
+          "id": "pack_code_ide",
+          "engineId": "code_ide",
+          "title": "Code Ide Pack",
+          "summary": "code ide engine synthesized from n8n-io/n8n, activepieces/activepieces, apify/crawlee",
+          "sourceRepoSlugs": [
+            "n8n-io/n8n",
+            "activepieces/activepieces",
+            "apify/crawlee"
+          ],
+          "frameworks": [
+            "react",
+            "fastify",
+            "express",
+            "playwright"
+          ],
+          "adoptedTemplateKeys": [
+            "n8n-io/n8n:workflow:workflow",
+            "activepieces/activepieces:react",
+            "activepieces/activepieces:fastify",
+            "activepieces/activepieces:type:PackageJson",
+            "activepieces/activepieces:function:readPackageJson",
+            "activepieces/activepieces:function:readPackageEslint",
+            "activepieces/activepieces:function:writePackageEslint",
+            "apify/crawlee:express"
+          ],
+          "capabilities": [
+            "apify",
+            "headless",
+            "chrome",
+            "puppeteer",
+            "crawler",
+            "scraper"
+          ]
+        },
+        {
+          "id": "pack_terminal",
+          "engineId": "terminal",
+          "title": "Terminal Pack",
+          "summary": "terminal engine synthesized from activepieces/activepieces, apify/crawlee, microsoft/playwright",
+          "sourceRepoSlugs": [
+            "activepieces/activepieces",
+            "apify/crawlee",
+            "microsoft/playwright"
+          ],
+          "frameworks": [
+            "react",
+            "fastify",
+            "express",
+            "playwright"
+          ],
+          "adoptedTemplateKeys": [
+            "activepieces/activepieces:react",
+            "activepieces/activepieces:fastify",
+            "activepieces/activepieces:type:PackageJson",
+            "activepieces/activepieces:function:readPackageJson",
+            "activepieces/activepieces:function:readPackageEslint",
+            "activepieces/activepieces:function:writePackageEslint",
+            "apify/crawlee:express",
+            "apify/crawlee:playwright"
+          ],
+          "capabilities": [
+            "apify",
+            "headless",
+            "chrome",
+            "puppeteer",
+            "crawler",
+            "scraper"
+          ]
+        },
+        {
+          "id": "pack_research",
+          "engineId": "research",
+          "title": "Research Pack",
+          "summary": "research engine synthesized from activepieces/activepieces, apify/crawlee, microsoft/playwright",
+          "sourceRepoSlugs": [
+            "activepieces/activepieces",
+            "apify/crawlee",
+            "microsoft/playwright"
+          ],
+          "frameworks": [
+            "react",
+            "fastify",
+            "express",
+            "playwright"
+          ],
+          "adoptedTemplateKeys": [
+            "activepieces/activepieces:react",
+            "activepieces/activepieces:fastify",
+            "activepieces/activepieces:type:PackageJson",
+            "activepieces/activepieces:function:readPackageJson",
+            "activepieces/activepieces:function:readPackageEslint",
+            "activepieces/activepieces:function:writePackageEslint",
+            "apify/crawlee:express",
+            "apify/crawlee:playwright"
+          ],
+          "capabilities": [
+            "apify",
+            "headless",
+            "chrome",
+            "puppeteer",
+            "crawler",
+            "scraper"
+          ]
+        },
+        {
+          "id": "pack_sheet",
+          "engineId": "sheet",
+          "title": "Sheet Pack",
+          "summary": "sheet engine synthesized from PipedreamHQ/pipedream, activepieces/activepieces, microsoft/playwright",
+          "sourceRepoSlugs": [
+            "PipedreamHQ/pipedream",
+            "activepieces/activepieces",
+            "microsoft/playwright"
+          ],
+          "frameworks": [
+            "react",
+            "fastify"
+          ],
+          "adoptedTemplateKeys": [
+            "PipedreamHQ/pipedream:workflow:workflow",
+            "activepieces/activepieces:react",
+            "activepieces/activepieces:fastify",
+            "activepieces/activepieces:type:PackageJson",
+            "activepieces/activepieces:function:readPackageJson",
+            "activepieces/activepieces:function:readPackageEslint",
+            "activepieces/activepieces:function:writePackageEslint",
+            "microsoft/playwright:react"
+          ],
+          "capabilities": [
+            "pipedream",
+            "integration",
+            "api"
+          ]
+        },
+        {
+          "id": "pack_support",
+          "engineId": "support",
+          "title": "Support Pack",
+          "summary": "support engine synthesized from microsoft/playwright, n8n-io/n8n, puppeteer/puppeteer",
+          "sourceRepoSlugs": [
+            "microsoft/playwright",
+            "n8n-io/n8n",
+            "puppeteer/puppeteer"
+          ],
+          "frameworks": [
+            "react"
+          ],
+          "adoptedTemplateKeys": [
+            "microsoft/playwright:react",
+            "microsoft/playwright:type:Binary",
+            "microsoft/playwright:type:Channel",
+            "microsoft/playwright:type:Events",
+            "microsoft/playwright:type:EventMap",
+            "n8n-io/n8n:workflow:workflow",
+            "puppeteer/puppeteer:workflow:workflow"
+          ],
+          "capabilities": []
+        },
+        {
+          "id": "pack_health",
+          "engineId": "health",
+          "title": "Health Pack",
+          "summary": "health engine synthesized from activepieces/activepieces, PipedreamHQ/pipedream",
+          "sourceRepoSlugs": [
+            "activepieces/activepieces",
+            "PipedreamHQ/pipedream"
+          ],
+          "frameworks": [
+            "react",
+            "fastify"
+          ],
+          "adoptedTemplateKeys": [
+            "activepieces/activepieces:react",
+            "activepieces/activepieces:fastify",
+            "activepieces/activepieces:type:PackageJson",
+            "activepieces/activepieces:function:readPackageJson",
+            "activepieces/activepieces:function:readPackageEslint",
+            "activepieces/activepieces:function:writePackageEslint",
+            "PipedreamHQ/pipedream:workflow:workflow"
+          ],
+          "capabilities": [
+            "pipedream",
+            "integration",
+            "api"
+          ]
+        },
+        {
+          "id": "pack_chat",
+          "engineId": "chat",
+          "title": "Chat Pack",
+          "summary": "chat engine synthesized from n8n-io/n8n",
+          "sourceRepoSlugs": [
+            "n8n-io/n8n"
+          ],
+          "frameworks": [],
+          "adoptedTemplateKeys": [
+            "n8n-io/n8n:workflow:workflow"
+          ],
+          "capabilities": []
+        },
+        {
+          "id": "pack_video",
+          "engineId": "video",
+          "title": "Video Pack",
+          "summary": "video engine synthesized from n8n-io/n8n",
+          "sourceRepoSlugs": [
+            "n8n-io/n8n"
+          ],
+          "frameworks": [],
+          "adoptedTemplateKeys": [
+            "n8n-io/n8n:workflow:workflow"
+          ],
+          "capabilities": []
+        }
+      ]
+    }
+  },
+  {
+    "plan": {
+      "appName": "Studio OS",
+      "entities": [
+        {
+          "connector": "drive",
+          "operation": "compose_studio_os_capability"
+        },
+        {
+          "connector": "notion",
+          "operation": "compose_studio_os_capability"
+        },
+        {
+          "connector": "slack",
+          "operation": "compose_studio_os_capability"
+        }
+      ],
+      "uiMode": "builder"
+    },
+    "graph": {
+      "id": "wf_1776442240822",
+      "name": "Studio OS",
+      "nodes": [
+        {
+          "id": "n0",
+          "type": "trigger.intent",
+          "config": {}
+        },
+        {
+          "id": "n1",
+          "type": "core.router",
+          "config": {}
+        },
+        {
+          "id": "n2",
+          "type": "drive.file",
+          "connector": "drive",
+          "config": {
+            "operation": "compose_studio_os_capability"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "notion.page",
+          "connector": "notion",
+          "config": {
+            "operation": "compose_studio_os_capability"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "slack.message",
+          "connector": "slack",
+          "config": {
+            "operation": "compose_studio_os_capability"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "core.storage",
+          "config": {}
+        }
+      ],
+      "edges": [
+        {
+          "from": "n0",
+          "to": "n1",
+          "label": "intent"
+        },
+        {
+          "from": "n1",
+          "to": "n2",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n3",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n4",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n5",
+          "label": "persist"
+        }
+      ]
+    },
+    "surface": {
+      "appId": "app_wf_1776442240822",
+      "appName": "Studio OS",
+      "layout": "split-pane",
+      "components": [
+        {
+          "id": "c_n2",
+          "kind": "dashboard",
+          "title": "drive file",
+          "bindsToNodeId": "n2",
+          "props": {
+            "editable": true,
+            "source": "drive",
+            "nodeType": "drive.file"
+          }
+        },
+        {
+          "id": "c_n3",
+          "kind": "dashboard",
+          "title": "notion page",
+          "bindsToNodeId": "n3",
+          "props": {
+            "editable": true,
+            "source": "notion",
+            "nodeType": "notion.page"
+          }
+        },
+        {
+          "id": "c_n4",
+          "kind": "chat",
+          "title": "slack message",
+          "bindsToNodeId": "n4",
+          "props": {
+            "editable": true,
+            "source": "slack",
+            "nodeType": "slack.message"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "plan": {
+      "appName": "Studio OS",
+      "entities": [
+        {
+          "connector": "drive",
+          "operation": "compose_studio_os_capability"
+        },
+        {
+          "connector": "notion",
+          "operation": "compose_studio_os_capability"
+        },
+        {
+          "connector": "slack",
+          "operation": "compose_studio_os_capability"
+        }
+      ],
+      "uiMode": "builder"
+    },
+    "graph": {
+      "id": "wf_1776441853448",
+      "name": "Studio OS",
+      "nodes": [
+        {
+          "id": "n0",
+          "type": "trigger.intent",
+          "config": {}
+        },
+        {
+          "id": "n1",
+          "type": "core.router",
+          "config": {}
+        },
+        {
+          "id": "n2",
+          "type": "drive.file",
+          "connector": "drive",
+          "config": {
+            "operation": "compose_studio_os_capability"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "notion.page",
+          "connector": "notion",
+          "config": {
+            "operation": "compose_studio_os_capability"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "slack.message",
+          "connector": "slack",
+          "config": {
+            "operation": "compose_studio_os_capability"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "core.storage",
+          "config": {}
+        }
+      ],
+      "edges": [
+        {
+          "from": "n0",
+          "to": "n1",
+          "label": "intent"
+        },
+        {
+          "from": "n1",
+          "to": "n2",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n3",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n4",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n5",
+          "label": "persist"
+        }
+      ]
+    },
+    "surface": {
+      "appId": "app_wf_1776441853448",
+      "appName": "Studio OS",
+      "layout": "split-pane",
+      "components": [
+        {
+          "id": "c_n2",
+          "kind": "dashboard",
+          "title": "drive file",
+          "bindsToNodeId": "n2",
+          "props": {
+            "editable": true,
+            "source": "drive",
+            "nodeType": "drive.file"
+          }
+        },
+        {
+          "id": "c_n3",
+          "kind": "dashboard",
+          "title": "notion page",
+          "bindsToNodeId": "n3",
+          "props": {
+            "editable": true,
+            "source": "notion",
+            "nodeType": "notion.page"
+          }
+        },
+        {
+          "id": "c_n4",
+          "kind": "chat",
+          "title": "slack message",
+          "bindsToNodeId": "n4",
+          "props": {
+            "editable": true,
+            "source": "slack",
+            "nodeType": "slack.message"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "plan": {
+      "appName": "NotebookLM Style Knowledge Workspace",
+      "entities": [
+        {
+          "connector": "drive",
+          "operation": "compose_notebooklm_capability"
+        },
+        {
+          "connector": "notion",
+          "operation": "compose_notebooklm_capability"
+        },
+        {
+          "connector": "slack",
+          "operation": "compose_notebooklm_capability"
+        }
+      ],
+      "uiMode": "builder"
+    },
+    "graph": {
+      "id": "wf_1776433355388",
+      "name": "NotebookLM Style Knowledge Workspace",
+      "nodes": [
+        {
+          "id": "n0",
+          "type": "trigger.intent",
+          "config": {}
+        },
+        {
+          "id": "n1",
+          "type": "core.router",
+          "config": {}
+        },
+        {
+          "id": "n2",
+          "type": "drive.file",
+          "connector": "drive",
+          "config": {
+            "operation": "compose_notebooklm_capability"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "notion.page",
+          "connector": "notion",
+          "config": {
+            "operation": "compose_notebooklm_capability"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "slack.message",
+          "connector": "slack",
+          "config": {
+            "operation": "compose_notebooklm_capability"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "core.storage",
+          "config": {}
+        }
+      ],
+      "edges": [
+        {
+          "from": "n0",
+          "to": "n1",
+          "label": "intent"
+        },
+        {
+          "from": "n1",
+          "to": "n2",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n3",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n4",
+          "label": "compose"
+        },
+        {
+          "from": "n1",
+          "to": "n5",
+          "label": "persist"
+        }
+      ]
+    },
+    "surface": {
+      "appId": "app_wf_1776433355388",
+      "appName": "NotebookLM Style Knowledge Workspace",
+      "layout": "split-pane",
+      "components": [
+        {
+          "id": "c_n2",
+          "kind": "dashboard",
+          "title": "drive file",
+          "bindsToNodeId": "n2",
+          "props": {
+            "editable": true,
+            "source": "drive",
+            "nodeType": "drive.file"
+          }
+        },
+        {
+          "id": "c_n3",
+          "kind": "dashboard",
+          "title": "notion page",
+          "bindsToNodeId": "n3",
+          "props": {
+            "editable": true,
+            "source": "notion",
+            "nodeType": "notion.page"
+          }
+        },
+        {
+          "id": "c_n4",
+          "kind": "chat",
+          "title": "slack message",
+          "bindsToNodeId": "n4",
+          "props": {
+            "editable": true,
+            "source": "slack",
+            "nodeType": "slack.message"
+          }
+        }
+      ]
+    }
+  }
+]

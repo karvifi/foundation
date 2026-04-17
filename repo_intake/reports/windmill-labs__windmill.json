@@ -1,0 +1,20 @@
+{
+  "repo": "windmill-labs/windmill",
+  "url": "https://github.com/windmill-labs/windmill.git",
+  "status": "extracted",
+  "copied_count": 10,
+  "copied_files": [
+    ".mcp.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/autonomous-mode.md",
+    "docs/enterprise.md",
+    "docs/failing-tests.md",
+    "docs/system-prompt-testing-plan.md",
+    "docs/system-prompt-testing-status.md",
+    "docs/validation.md",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\windmill-labs__windmill'...\nUpdating files:  18% (1409/7443)\nUpdating files:  19% (1415/7443)\nUpdating files:  20% (1489/7443)\nUpdating files:  21% (1564/7443)\nUpdating files:  22% (1638/7443)\nUpdating files:  23% (1712/7443)\nUpdating files:  24% (1787/7443)\nUpdating files:  25% (1861/7443)\nUpdating files:  26% (1936/7443)\nUpdating files:  27% (2010/7443)\nUpdating files:  28% (2085/7443)\nUpdating files:  29% (2159/7443)\nUpdating files:  30% (2233/7443)\nUpdating files:  31% (2308/7443)\nUpdating files:  32% (2382/7443)\nUpdating files:  33% (2457/7443)\nUpdating files:  34% (2531/7443)\nUpdating files:  35% (2606/7443)\nUpdating files:  35% (2665/7443)\nUpdating files:  36% (2680/7443)\nUpdating files:  37% (2754/7443)\nUpdating files:  38% (2829/7443)\nUpdating files:  39% (2903/7443)\nUpdating files:  40% (2978/7443)\nUpdating files:  41% (3052/7443)\nUpdating files:  42% (3127/7443)\nUpdating files:  43% (3201/7443)\nUpdating files:  44% (3275/7443)\nUpdating files:  45% (3350/7443)\nUpdating files:  46% (3424/7443)\nUpdating files:  47% (3499/7443)\nUpdating files:  48% (3573/7443)\nUpdating files:  49% (3648/7443)\nUpdating files:  50% (3722/7443)\nUpdating files:  50% (3733/7443)\nUpdating files:  51% (3796/7443)\nUpdating files:  52% (3871/7443)\nUpdating files:  53% (3945/7443)\nUpdating files:  54% (4020/7443)\nUpdating files:  55% (4094/7443)\nUpdating files:  56% (4169/7443)\nUpdating files:  57% (4243/7443)\nUpdating files:  58% (4317/7443)\nUpdating files:  59% (4392/7443)\nUpdating files:  60% (4466/7443)\nUpdating files:  61% (4541/7443)\nUpdating files:  62% (4615/7443)\nUpdating files:  63% (4690/7443)\nUpdating files:  64% (4764/7443)\nUpdating files:  64% (4801/7443)\nUpdating files:  65% (4838/7443)\nUpdating files:  66% (4913/7443)\nUpdating files:  67% (4987/7443)\nUpdating files:  68% (5062/7443)\nUpdating files:  69% (5136/7443)\nUpdating files:  70% (5211/7443)\nUpdating files:  71% (5285/7443)\nUpdating files:  72% (5359/7443)\nUpdating files:  73% (5434/7443)\nUpdating files:  74% (5508/7443)\nUpdating files:  75% (5583/7443)\nUpdating files:  76% (5657/7443)\nUpdating files:  77% (5732/7443)\nUpdating files:  78% (5806/7443)\nUpdating files:  78% (5845/7443)\nUpdating files:  79% (5880/7443)\nUpdating files:  80% (5955/7443)\nUpdating files:  81% (6029/7443)\nUpdating files:  82% (6104/7443)\nUpdating files:  83% (6178/7443)\nUpdating files:  84% (6253/7443)\nUpdating files:  85% (6327/7443)\nUpdating files:  86% (6401/7443)\nUpdating files:  87% (6476/7443)\nUpdating files:  88% (6550/7443)\nUpdating files:  88% (6576/7443)\nUpdating files:  89% (6625/7443)\nUpdating files:  90% (6699/7443)\nUpdating files:  91% (6774/7443)\nUpdating files:  92% (6848/7443)\nUpdating files:  93% (6922/7443)\nUpdating files:  94% (6997/7443)\nUpdating files:  95% (7071/7443)\nUpdating files:  96% (7146/7443)\nUpdating files:  97% (7220/7443)\nUpdating files:  98% (7295/7443)\nUpdating files:  99% (7369/7443)\nUpdating files: 100% (7443/7443)\nUpdating files: 100% (7443/7443), done."
+}

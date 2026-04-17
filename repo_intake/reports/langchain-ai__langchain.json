@@ -1,0 +1,14 @@
+{
+  "repo": "langchain-ai/langchain",
+  "url": "https://github.com/langchain-ai/langchain.git",
+  "status": "extracted",
+  "copied_count": 4,
+  "copied_files": [
+    ".mcp.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md"
+  ],
+  "notes": "Use templates/repo-extraction-report.md to complete semantic extraction.",
+  "clone_log": "Cloning into 'C:\\Users\\karti\\Desktop\\foundation\\repo_intake\\_clones\\langchain-ai__langchain'...\nUpdating files:  44% (1267/2860)\nUpdating files:  45% (1287/2860)\nUpdating files:  46% (1316/2860)\nUpdating files:  47% (1345/2860)\nUpdating files:  48% (1373/2860)\nUpdating files:  49% (1402/2860)\nUpdating files:  50% (1430/2860)\nUpdating files:  51% (1459/2860)\nUpdating files:  52% (1488/2860)\nUpdating files:  53% (1516/2860)\nUpdating files:  54% (1545/2860)\nUpdating files:  55% (1573/2860)\nUpdating files:  56% (1602/2860)\nUpdating files:  57% (1631/2860)\nUpdating files:  58% (1659/2860)\nUpdating files:  59% (1688/2860)\nUpdating files:  60% (1716/2860)\nUpdating files:  61% (1745/2860)\nUpdating files:  62% (1774/2860)\nUpdating files:  63% (1802/2860)\nUpdating files:  64% (1831/2860)\nUpdating files:  65% (1859/2860)\nUpdating files:  66% (1888/2860)\nUpdating files:  67% (1917/2860)\nUpdating files:  68% (1945/2860)\nUpdating files:  69% (1974/2860)\nUpdating files:  70% (2002/2860)\nUpdating files:  71% (2031/2860)\nUpdating files:  72% (2060/2860)\nUpdating files:  73% (2088/2860)\nUpdating files:  74% (2117/2860)\nUpdating files:  75% (2145/2860)\nUpdating files:  76% (2174/2860)\nUpdating files:  77% (2203/2860)\nUpdating files:  78% (2231/2860)\nUpdating files:  79% (2260/2860)\nUpdating files:  80% (2288/2860)\nUpdating files:  81% (2317/2860)\nUpdating files:  82% (2346/2860)\nUpdating files:  82% (2362/2860)\nUpdating files:  83% (2374/2860)\nUpdating files:  84% (2403/2860)\nUpdating files:  85% (2431/2860)\nUpdating files:  86% (2460/2860)\nUpdating files:  87% (2489/2860)\nUpdating files:  88% (2517/2860)\nUpdating files:  89% (2546/2860)\nUpdating files:  90% (2574/2860)\nUpdating files:  91% (2603/2860)\nUpdating files:  92% (2632/2860)\nUpdating files:  93% (2660/2860)\nUpdating files:  94% (2689/2860)\nUpdating files:  95% (2717/2860)\nUpdating files:  96% (2746/2860)\nUpdating files:  97% (2775/2860)\nUpdating files:  98% (2803/2860)\nUpdating files:  99% (2832/2860)\nUpdating files: 100% (2860/2860)\nUpdating files: 100% (2860/2860), done."
+}

@@ -1,0 +1,88 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "description": "Read/write project files. Replaces custom file I/O code.",
+      "env": {}
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "."],
+      "description": "Full git operations: commits, branches, diffs, log, blame.",
+      "env": {}
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent knowledge graph. Store facts, decisions, context across sessions.",
+      "env": {}
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "description": "HTTP GET any URL. Replaces writing custom fetch code for APIs and web content.",
+      "env": {}
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "description": "Dynamic step-by-step reasoning for complex multi-part problems.",
+      "env": {}
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "description": "Get accurate, current library documentation. Use before any library-specific code.",
+      "env": {}
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"],
+      "description": "Browser automation for testing and web scraping.",
+      "env": {}
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "description": "Web search. Use for current information, research, finding solutions.",
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub API: repos, issues, PRs, files, search. Use for GitHub-related tasks.",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest", "--access-token", "${SUPABASE_ACCESS_TOKEN}"],
+      "description": "Supabase operations: DB queries, schema management, auth, storage.",
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+      }
+    }
+  },
+  "_instructions": {
+    "max_active_servers": 10,
+    "reason": "Each MCP server description consumes tokens. More than 10 can reduce your 200k context window to ~70k.",
+    "disable_unused": "Set disabledMcpServers in project config for servers not needed in current project.",
+    "add_new_server": "Add project-specific servers to this file. Reference in PRE_START_CHECKLIST Phase 6.",
+    "optional_servers": {
+      "exa": "npx -y exa-mcp-server — neural web search (better than brave for research)",
+      "firecrawl": "npx -y firecrawl-mcp — web scraping with AI-friendly output",
+      "stripe": "npx -y @stripe/agent-toolkit@latest mcp — Stripe payment operations",
+      "resend": "npx -y resend-mcp — email sending via Resend API",
+      "cloudflare": "npx -y @cloudflare/mcp-server-cloudflare — Cloudflare Workers, KV, D1, R2",
+      "vercel": "npx -y @vercel/mcp-adapter — Vercel deployments and projects",
+      "railway": "npx -y @railway/mcp — Railway deployment management",
+      "sentry": "npx -y @sentry/mcp-server — Sentry error tracking",
+      "linear": "npx -y linear-mcp-server — Linear project management",
+      "notion": "npx -y @notionhq/notion-mcp-server -- --api-key ${NOTION_API_KEY}"
+    }
+  }
+}
