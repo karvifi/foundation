@@ -383,3 +383,211 @@ export async function createDb(databaseUrl?: string) {
     },
   });
 }
+
+// ── Phase 3 re-exports ────────────────────────────────────────────────────
+// Focused schema module (operations, sessions, session_events aliases)
+export {
+  operations,
+  sessions,
+  sessionEvents,
+  type OperationRow,
+  type InsertOperationRow,
+  type SessionRow,
+  type InsertSessionRow,
+  type SessionEventRow,
+  type InsertSessionEventRow,
+  type OperationStatus,
+} from "./schema/operations.js";
+
+// Typed query helpers (getOperation renamed to avoid collision with the
+// in-memory helper exported by @sso/connector-runtime).
+export {
+  createOperation,
+  getOperation as getOperationFromDb,
+  listOperations,
+  createSession,
+  getSession,
+  listSessions,
+  createSessionEvent,
+  listSessionEventsForSession,
+  type CreateOperationInput,
+  type ListOperationsOptions,
+  type CreateSessionInput,
+  type CreateSessionEventInput,
+} from "./queries.js";
+
+// ── Phase 4 users schema ───────────────────────────────────────────────────
+export { users, type User, type InsertUser } from "./schema/users.js";
+
+// ── os.documents (OmniDocs) ────────────────────────────────────────────────
+export const documents = os.table("documents", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:  text("workspace_id").notNull(),
+  ownerId:      text("owner_id").notNull(),
+  parentId:     text("parent_id"),
+  title:        text("title").notNull().default("Untitled"),
+  content:      jsonb("content").default({}),
+  contentText:  text("content_text"),
+  icon:         text("icon").default("📄"),
+  coverUrl:     text("cover_url"),
+  isPublished:  boolean("is_published").default(false),
+  publishSlug:  text("publish_slug"),
+  wordCount:    integer("word_count").default(0),
+  starred:      boolean("starred").default(false),
+  archivedAt:   timestamp("archived_at"),
+  deletedAt:    timestamp("deleted_at"),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+  updatedAt:    timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [
+  index("os_docs_workspace_idx").on(t.workspaceId),
+  index("os_docs_owner_idx").on(t.ownerId),
+]);
+export type Document       = InferSelectModel<typeof documents>;
+export type InsertDocument = InferInsertModel<typeof documents>;
+
+// ── os.projects (OmniProjects) ─────────────────────────────────────────────
+export const projects = os.table("projects", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:  text("workspace_id").notNull(),
+  ownerId:      text("owner_id").notNull(),
+  name:         text("name").notNull(),
+  description:  text("description"),
+  icon:         text("icon").default("🎯"),
+  status:       text("status").notNull().default("active"),
+  identifier:   text("identifier").notNull(),
+  deletedAt:    timestamp("deleted_at"),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+  updatedAt:    timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [index("os_projects_workspace_idx").on(t.workspaceId)]);
+export type Project       = InferSelectModel<typeof projects>;
+export type InsertProject = InferInsertModel<typeof projects>;
+
+// ── os.tasks ───────────────────────────────────────────────────────────────
+import { real } from "drizzle-orm/pg-core";
+export const tasks = os.table("tasks", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  projectId:    text("project_id").notNull(),
+  workspaceId:  text("workspace_id").notNull(),
+  assigneeId:   text("assignee_id"),
+  parentId:     text("parent_id"),
+  title:        text("title").notNull(),
+  description:  jsonb("description").default({}),
+  status:       text("status").notNull().default("todo"),
+  priority:     text("priority").notNull().default("medium"),
+  identifier:   text("identifier").notNull(),
+  estimate:     integer("estimate"),
+  dueDate:      timestamp("due_date"),
+  completedAt:  timestamp("completed_at"),
+  sortOrder:    real("sort_order").default(0),
+  labels:       jsonb("labels").default([]),
+  deletedAt:    timestamp("deleted_at"),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+  updatedAt:    timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [
+  index("os_tasks_project_idx").on(t.projectId),
+  index("os_tasks_workspace_idx").on(t.workspaceId),
+  index("os_tasks_status_idx").on(t.projectId, t.status),
+]);
+export type Task       = InferSelectModel<typeof tasks>;
+export type InsertTask = InferInsertModel<typeof tasks>;
+
+// ── os.contacts (OmniCRM) ─────────────────────────────────────────────────
+export const contacts = os.table("contacts", {
+  id:             text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:    text("workspace_id").notNull(),
+  ownerId:        text("owner_id"),
+  name:           text("name").notNull(),
+  email:          text("email"),
+  phone:          text("phone"),
+  company:        text("company"),
+  role:           text("role"),
+  avatarUrl:      text("avatar_url"),
+  status:         text("status").default("lead"),
+  tags:           jsonb("tags").default([]),
+  customFields:   jsonb("custom_fields").default({}),
+  lastContactAt:  timestamp("last_contact_at"),
+  deletedAt:      timestamp("deleted_at"),
+  createdAt:      timestamp("created_at").defaultNow().notNull(),
+  updatedAt:      timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [index("os_contacts_workspace_idx").on(t.workspaceId)]);
+export type Contact       = InferSelectModel<typeof contacts>;
+export type InsertContact = InferInsertModel<typeof contacts>;
+
+// ── os.deals ──────────────────────────────────────────────────────────────
+export const deals = os.table("deals", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:  text("workspace_id").notNull(),
+  ownerId:      text("owner_id"),
+  contactId:    text("contact_id"),
+  title:        text("title").notNull(),
+  stage:        text("stage").notNull().default("lead"),
+  valueCents:   integer("value_cents").default(0),
+  currency:     text("currency").default("USD"),
+  probability:  integer("probability").default(50),
+  closeDate:    timestamp("close_date"),
+  wonAt:        timestamp("won_at"),
+  lostAt:       timestamp("lost_at"),
+  lostReason:   text("lost_reason"),
+  customFields: jsonb("custom_fields").default({}),
+  deletedAt:    timestamp("deleted_at"),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+  updatedAt:    timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [index("os_deals_workspace_idx").on(t.workspaceId)]);
+export type Deal       = InferSelectModel<typeof deals>;
+export type InsertDeal = InferInsertModel<typeof deals>;
+
+// ── os.credit_ledger ─────────────────────────────────────────────────────
+export const creditLedger = os.table("credit_ledger", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:  text("workspace_id").notNull(),
+  userId:       text("user_id"),
+  deltaCents:   integer("delta_cents").notNull(),
+  reason:       text("reason").notNull(),
+  meta:         jsonb("meta").default({}),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+}, (t) => [index("os_credit_ledger_ws_idx").on(t.workspaceId, t.createdAt)]);
+export type CreditLedgerRow = InferSelectModel<typeof creditLedger>;
+
+// ── os.ai_queries ─────────────────────────────────────────────────────────
+export const aiQueryLog = os.table("ai_query_log", {
+  id:               text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:      text("workspace_id").notNull(),
+  userId:           text("user_id"),
+  model:            text("model").notNull(),
+  promptTokens:     integer("prompt_tokens").default(0),
+  completionTokens: integer("completion_tokens").default(0),
+  costCents:        integer("cost_cents").default(0),
+  cached:           boolean("cached").default(false),
+  surface:          text("surface"),
+  createdAt:        timestamp("created_at").defaultNow().notNull(),
+}, (t) => [index("os_ai_query_log_ws_idx").on(t.workspaceId, t.createdAt)]);
+export type AiQueryLogRow = InferSelectModel<typeof aiQueryLog>;
+
+// ── os.automations (OmniFlow) ─────────────────────────────────────────────
+export const automations = os.table("automations", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  workspaceId:  text("workspace_id").notNull(),
+  ownerId:      text("owner_id"),
+  name:         text("name").notNull(),
+  description:  text("description"),
+  enabled:      boolean("enabled").default(true),
+  trigger:      jsonb("trigger").notNull(),
+  steps:        jsonb("steps").notNull().default([]),
+  runCount:     integer("run_count").default(0),
+  lastRunAt:    timestamp("last_run_at"),
+  deletedAt:    timestamp("deleted_at"),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+  updatedAt:    timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [index("os_automations_ws_idx").on(t.workspaceId)]);
+export type Automation       = InferSelectModel<typeof automations>;
+export type InsertAutomation = InferInsertModel<typeof automations>;
+
+// ── os.waitlist ───────────────────────────────────────────────────────────
+export const waitlist = os.table("waitlist", {
+  id:           text("id").primaryKey().$defaultFn(genUlid),
+  email:        text("email").notNull(),
+  referralCode: text("referral_code"),
+  referredBy:   text("referred_by"),
+  createdAt:    timestamp("created_at").defaultNow().notNull(),
+}, (t) => [uniqueIndex("os_waitlist_email_uniq").on(t.email)]);
+export type WaitlistRow = InferSelectModel<typeof waitlist>;

@@ -1,0 +1,79 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# .dockerignore for apps/api
+#
+# Evaluated RELATIVE TO THE BUILD CONTEXT (the monorepo root, because we build
+# with `docker build -f apps/api/Dockerfile .` from the repo root and flyctl
+# uploads the monorepo as the build context).
+#
+# Rationale: every path that stays out of the image keeps the layer hash
+# stable and trims build uploads to Fly's remote builder.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Dependency graphs — reinstalled fresh inside the builder stage
+**/node_modules
+**/.pnpm-store
+
+# VCS metadata
+.git
+.gitignore
+.gitattributes
+**/.github
+
+# Build outputs — recreated inside the image
+**/dist
+**/build
+**/.turbo
+**/.next
+**/.vercel
+**/out
+
+# Editor / IDE / OS cruft
+.vscode
+.idea
+.cursor
+.claude
+**/.DS_Store
+**/Thumbs.db
+
+# Test artefacts
+**/coverage
+**/*.test.ts
+**/*.test.tsx
+**/*.test.js
+**/*.spec.ts
+**/*.spec.tsx
+**/*.spec.js
+**/__tests__
+**/__mocks__
+**/e2e
+**/playwright-report
+**/test-results
+
+# Local environment files — secrets ship via `flyctl secrets set`
+.env
+.env.*
+!.env.example
+
+# Logs & dumps
+**/*.log
+**/npm-debug.log*
+**/pnpm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Docs (not needed at runtime; keep images small)
+**/*.md
+LICENSE
+docs
+README*
+
+# Web app source — API image doesn't need it
+apps/web
+
+# Drizzle local artefacts (migrations are applied out-of-band by deploy.yml)
+**/drizzle/meta/_journal.json.lock
+
+# Misc tooling caches
+**/.eslintcache
+**/.parcel-cache
+**/tsconfig.tsbuildinfo

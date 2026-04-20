@@ -23,10 +23,33 @@ import { createArtifact, deleteArtifact, exportArtifactAsJson, getArtifact, getA
 import { evaluatePolicies, getApproval, getAuditLog, initBudget, listApprovals, logAudit, recordUsage, requirePermission, resolveApproval, type PolicyRule } from "@sso/policy-engine";
 import { airtableAdapter, hubspotAdapter, jiraAdapter, linearAdapter, n8nAdapter, notionAdapter, slackAdapter, type AdapterCredential } from "@sso/connector-adapters";
 import type { AppCatalogItem, CloneCapability, SkillCatalogItem } from "@sso/contracts";
-import { createWorkspaceSession, getWorkspaceSession, listSessionEvents, listWorkspacePatterns, publishRecordSelected } from "@sso/workspace-orchestrator";
+import { createWorkspaceSession, getPersistedOperation, getWorkspaceSession, listPersistedOperations, listSessionEvents, listWorkspacePatterns, persistOperation, publishRecordSelected, recoverSessions } from "@sso/workspace-orchestrator";
+import { authMiddleware } from "./middleware/auth.js";
+import { loggingMiddleware } from "./middleware/logging.js";
+import { authRateLimit, globalRateLimit } from "./middleware/rateLimit.js";
+import { authRouter } from "./auth/routes.js";
+import { billingRouter } from "./billing/routes.js";
+import { aiRouter } from "./ai/routes.js";
+import { documentsRouter } from "./documents/routes.js";
+import { crmRouter } from "./crm/routes.js";
+import { healthCheck } from "./health.js";
+
+if (process.env["NODE_ENV"] === "production" && !process.env["ALLOWED_ORIGIN"]) {
+  throw new Error("ALLOWED_ORIGIN must be set in production");
+}
+const ALLOWED_ORIGIN = process.env["ALLOWED_ORIGIN"] ?? "http://localhost:3000";
 
 const app = new Hono();
-app.use("*", cors({ origin: "http://localhost:3000" }));
+app.use("*", cors({ origin: ALLOWED_ORIGIN }));
+app.use("*", loggingMiddleware);
+app.use("*", globalRateLimit);
+app.use("*", authMiddleware);
+app.use("/auth/*", authRateLimit);
+app.route("/auth", authRouter);
+app.route("/billing", billingRouter);
+app.route("/ai", aiRouter);
+app.route("/documents", documentsRouter);
+app.route("/crm", crmRouter);
 
 const deploymentStore = new Map<string, {
   id: string;
@@ -166,11 +189,14 @@ function buildEnginePacksFromPatterns(repoPatterns: CloneRepoPattern[]): EngineP
   }).filter((item): item is EnginePack => item !== null);
 }
 
-function authContext(c: Context, workspaceId = "ws_demo") {
-  const userId = c.req.header("x-user-id") ?? "usr_demo";
-  const orgId = c.req.header("x-org-id") ?? "org_demo";
-  const role = c.req.header("x-user-role") ?? "owner";
-  return { userId, orgId, workspaceId, roles: [role] };
+function authContext(c: Context, workspaceId?: string) {
+  const auth = c.get("auth");
+  return {
+    userId: auth?.userId ?? "usr_demo",
+    orgId: auth?.orgId ?? "org_demo",
+    workspaceId: workspaceId ?? auth?.workspaceId ?? "ws_demo",
+    roles: [auth?.role ?? "owner"],
+  };
 }
 
 const appCatalog: AppCatalogItem[] = [
@@ -241,7 +267,9 @@ const skillCatalog: SkillCatalogItem[] = [
   { id: "skill_observability", name: "Runtime Observability", description: "Captures run traces, token burn, and operational health metrics.", category: "data", level: "advanced" }
 ];
 
-app.get("/health", (c) => c.json({ status: "ok" }));
+// Liveness probe. Polled by Fly.io (every 30s), Docker HEALTHCHECK, and uptime
+// monitors. Intentionally side-effect-free — see ./health.ts for rationale.
+app.get("/health", (c) => c.json(healthCheck()));
 
 app.get("/catalog/apps", (c) => {
   return c.json({
@@ -272,7 +300,8 @@ app.post("/workspace/sessions", async (c) => {
     const session = await createWorkspaceSession(body.workspaceId, body.patternId);
     return c.json(session, 201);
   } catch (err) {
-    return c.json({ error: String(err) }, 400);
+    console.error("[session/create]", err);
+    return c.json({ error: "Failed to create session" }, 400);
   }
 });
 
@@ -286,7 +315,7 @@ app.get("/workspace/sessions/:id/events", async (c) => {
   const sessionId = c.req.param("id");
   const session = await getWorkspaceSession(sessionId);
   if (!session) return c.json({ error: "workspace session not found" }, 404);
-  const limit = Number(c.req.query("limit") ?? "50");
+  const limit = Math.min(Number(c.req.query("limit") ?? "50"), 200);
   return c.json({ items: await listSessionEvents(sessionId, limit) });
 });
 
@@ -312,7 +341,8 @@ app.post("/workspace/sessions/:id/select", async (c) => {
     );
     return c.json(propagation);
   } catch (err) {
-    return c.json({ error: String(err) }, 400);
+    console.error("[context/propagate]", err);
+    return c.json({ error: "Context propagation failed" }, 400);
   }
 });
 
@@ -336,13 +366,13 @@ app.post("/intake/select", async (c) => {
 });
 
 app.get("/intake/capabilities", (c) => {
-  const limit = Number(c.req.query("limit") ?? "24");
+  const limit = Math.min(Number(c.req.query("limit") ?? "24"), 200);
   const items = buildCloneCapabilityCatalog(process.cwd(), limit);
   return c.json({ items });
 });
 
 app.get("/intake/repo-patterns", (c) => {
-  const limit = Number(c.req.query("limit") ?? "30");
+  const limit = Math.min(Number(c.req.query("limit") ?? "30"), 200);
   const mode = c.req.query("mode") ?? "focused";
   if (mode === "full") {
     return c.json({ items: buildCloneRepoPatternCatalog(process.cwd(), Math.max(limit, 120)) });
@@ -376,7 +406,7 @@ app.get("/intake/repo-pattern", (c) => {
 app.get("/intake/repo-signatures", (c) => {
   const slug = c.req.query("slug");
   if (!slug) return c.json({ error: "slug is required" }, 400);
-  const limit = Number(c.req.query("limit") ?? "60");
+  const limit = Math.min(Number(c.req.query("limit") ?? "60"), 200);
   const mode = c.req.query("mode") === "deep" ? "deep" : "sample";
   const signatures = extractCloneCodeSignatures(slug, process.cwd(), limit, mode);
   return c.json({ slug, items: signatures });
@@ -385,7 +415,7 @@ app.get("/intake/repo-signatures", (c) => {
 app.get("/intake/repo-templates", (c) => {
   const slug = c.req.query("slug");
   if (!slug) return c.json({ error: "slug is required" }, 400);
-  const limit = Number(c.req.query("limit") ?? "18");
+  const limit = Math.min(Number(c.req.query("limit") ?? "18"), 200);
   const mode = c.req.query("mode") === "deep" ? "deep" : "sample";
   const templates = extractCloneTemplateSnippets(slug, process.cwd(), limit, mode);
   return c.json({ slug, items: templates });
@@ -469,12 +499,13 @@ app.post("/workflows/:id/run", async (c) => {
   }
 
   const run = executeWorkflow(hit.graph);
-  await recordUsage("ws_demo", 300, 0.01);
+  const _wfCtx = authContext(c);
+  await recordUsage(_wfCtx.workspaceId, 300, 0.01);
   await logAudit({
-    workspaceId: "ws_demo",
-    orgId: "org_demo",
+    workspaceId: _wfCtx.workspaceId,
+    orgId: _wfCtx.orgId,
     eventType: "workflow.run",
-    actorId: "usr_demo",
+    actorId: _wfCtx.userId,
     actorType: "user",
     targetType: "workflow",
     targetId: id,
@@ -543,9 +574,9 @@ app.post("/intent/build", async (c) => {
 
   await logAudit({
     workspaceId: body.workspaceId,
-    orgId: "org_demo",
+    orgId: authContext(c).orgId,
     eventType: "intent.build",
-    actorId: body.userId,
+    actorId: authContext(c).userId,
     actorType: "user",
     targetType: "workflow",
     targetId: result.graph.id,
@@ -897,13 +928,14 @@ app.post("/connectors/:connector/execute", async (c) => {
     }
     return c.json({ error: `Unsupported connector operation: ${connector}.${body.operation}` }, 400);
   } catch (err) {
-    return c.json({ ok: false, error: String(err) }, 500);
+    console.error("[connector/execute]", err);
+    return c.json({ ok: false, error: "Connector execution failed" }, 500);
   }
 });
 
 app.get("/audit", async (c) => {
   const workspaceId = c.req.query("workspaceId") ?? "ws_demo";
-  const limit = Number(c.req.query("limit") ?? "100");
+  const limit = Math.min(Number(c.req.query("limit") ?? "100"), 200);
   return c.json({ items: await getAuditLog(workspaceId, limit) });
 });
 
@@ -927,7 +959,7 @@ app.post("/graphs/:id/execute", async (c) => {
     await recordUsage(body.workspaceId, 500, 0.05);
     await logAudit({
       workspaceId: body.workspaceId,
-      orgId: "org_demo",
+      orgId: authContext(c).orgId,
       eventType: "graph.execute",
       actorId: authContext(c, body.workspaceId).userId,
       actorType: "user",
@@ -937,37 +969,14 @@ app.post("/graphs/:id/execute", async (c) => {
     });
     return c.json(result);
   } catch (err) {
-    return c.json({ error: String(err) }, 500);
+    console.error("[graph/execute]", err);
+    return c.json({ error: "Graph execution failed" }, 500);
   }
 });
 
 app.get("/operations/:id", async (c) => {
   const operationId = c.req.param("id");
-
-  const db = await getDb();
-  if (db) {
-    const { operationRecords } = await import("@sso/db");
-    const row = await db.query.operationRecords.findFirst({ where: (table, ops) => ops.eq(table.id, operationId) });
-    if (row) {
-      return c.json({
-        id: row.id,
-        sessionId: row.sessionId,
-        workspaceId: row.workspaceId,
-        engineId: row.engineId,
-        operation: row.operation,
-        input: (row.input ?? {}) as Record<string, unknown>,
-        output: (row.output ?? {}) as Record<string, unknown>,
-        status: row.status,
-        startedAt: row.startedAt.toISOString(),
-        finishedAt: row.finishedAt?.toISOString(),
-        durationMs: row.durationMs ?? undefined,
-        error: row.error ?? undefined,
-      });
-    }
-  }
-
-  const { getOperation } = await import("@sso/connector-runtime");
-  const operation = getOperation(operationId);
+  const operation = await getPersistedOperation(operationId);
   if (!operation) return c.json({ error: "operation not found" }, 404);
   return c.json(operation);
 });
@@ -975,45 +984,22 @@ app.get("/operations/:id", async (c) => {
 app.get("/operations", async (c) => {
   const workspaceId = c.req.query("workspaceId") ?? "ws_demo";
   const sessionId = c.req.query("sessionId");
-  const limit = Number(c.req.query("limit") ?? "50");
-  const { listOperationsForSession } = await import("@sso/connector-runtime");
+  const limit = Math.min(Number(c.req.query("limit") ?? "50"), 200);
 
   if (!sessionId) {
     return c.json({ items: [] });
   }
 
-  const db = await getDb();
-  if (db) {
-    const { operationRecords } = await import("@sso/db");
-    const rows = await db.query.operationRecords.findMany({
-      where: (table, ops) => ops.and(
-        ops.eq(table.workspaceId, workspaceId),
-        ops.eq(table.sessionId, sessionId),
-      ),
-      orderBy: (table, ops) => [ops.desc(table.createdAt)],
-      limit,
-    });
+  const operations = await listPersistedOperations({ sessionId, workspaceId, limit });
+  return c.json({ items: operations });
+});
 
-    return c.json({
-      items: rows.map((row) => ({
-        id: row.id,
-        sessionId: row.sessionId,
-        workspaceId: row.workspaceId,
-        engineId: row.engineId,
-        operation: row.operation,
-        input: (row.input ?? {}) as Record<string, unknown>,
-        output: (row.output ?? {}) as Record<string, unknown>,
-        status: row.status,
-        startedAt: row.startedAt.toISOString(),
-        finishedAt: row.finishedAt?.toISOString(),
-        durationMs: row.durationMs ?? undefined,
-        error: row.error ?? undefined,
-      })),
-    });
+recoverSessions().then((result) => {
+  if (result.sessions.length > 0) {
+    console.info(`[startup] recovered ${result.sessions.length} sessions, ${result.operationCount} operations`);
   }
-
-  const operations = listOperationsForSession(sessionId);
-  return c.json({ items: operations.slice(-limit) });
+}).catch(() => {
+  // DB unavailable — in-memory mode
 });
 
 serve({

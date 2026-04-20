@@ -1,0 +1,349 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# OmniOS CI pipeline
+#
+# Goals:
+#  - Verify every push to main and every PR targeting main.
+#  - Run independent checks (typecheck, lint, build-web, build-api) in parallel.
+#  - Aggressively cache pnpm store and turbo local cache to keep runs < 10 min.
+#  - Fail-fast disabled so all errors surface in a single run.
+#
+# Pinning note: for external actions we prefer commit SHAs for supply-chain
+# safety. The SHAs below correspond to the stable tagged releases referenced
+# in their comments. Update via dependabot or the "upgrade-actions" workflow.
+# ─────────────────────────────────────────────────────────────────────────────
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref to save CI minutes.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Minimum permissions. Individual jobs opt into more only when required.
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "22"
+  PNPM_VERSION: "9.15.0"
+  # Turbo remote cache can be wired later via TURBO_TOKEN + TURBO_TEAM secrets.
+  TURBO_TELEMETRY_DISABLED: "1"
+  # Ensures deterministic installs and avoids postinstall surprises in CI.
+  CI: "true"
+
+jobs:
+  # ───────────────────────────────────────────────────────────────────────────
+  # Setup job: resolves pnpm store path and warms caches for fan-out jobs.
+  # Every downstream job re-runs `pnpm install` but hits the warm cache, so the
+  # actual cost is just a lockfile integrity check.
+  # ───────────────────────────────────────────────────────────────────────────
+  setup:
+    name: Setup & Install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      pnpm-store-path: ${{ steps.pnpm-store.outputs.path }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Resolve pnpm store path
+        id: pnpm-store
+        shell: bash
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache pnpm store
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Typecheck: single turbo run across all workspaces. Uses turbo cache so
+  # unchanged packages are skipped in < 5s.
+  # ───────────────────────────────────────────────────────────────────────────
+  typecheck:
+    name: Typecheck
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Restore pnpm store
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: pnpm-store-${{ runner.os }}-
+
+      - name: Restore turbo cache
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: .turbo
+          key: turbo-typecheck-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            turbo-typecheck-${{ runner.os }}-
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Turbo typecheck
+        run: pnpm turbo run typecheck --cache-dir=.turbo
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Lint: turbo lint. Some workspaces may not define a lint script — turbo
+  # skips them gracefully, so we do not need an explicit guard here.
+  # ───────────────────────────────────────────────────────────────────────────
+  lint:
+    name: Lint
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Restore pnpm store
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: pnpm-store-${{ runner.os }}-
+
+      - name: Restore turbo cache
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: .turbo
+          key: turbo-lint-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            turbo-lint-${{ runner.os }}-
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Detect lint script availability
+        id: has-lint
+        shell: bash
+        run: |
+          # turbo will only run the task on packages that define it; we also
+          # bail out cleanly if no package in the graph defines `lint`.
+          if pnpm turbo run lint --dry-run=json --cache-dir=.turbo 2>/dev/null \
+              | grep -q '"task": "lint"'; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Turbo lint
+        if: steps.has-lint.outputs.present == 'true'
+        run: pnpm turbo run lint --cache-dir=.turbo
+
+      - name: Skip lint (no lint scripts defined)
+        if: steps.has-lint.outputs.present != 'true'
+        run: echo "No lint scripts present in any workspace package; skipping."
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Build web (Next.js). We deliberately skip this for PRs since Vercel handles
+  # preview builds itself and a duplicate full Next build adds ~3 min with no
+  # extra signal. We still build on push-to-main to catch regressions before
+  # the deploy workflow runs.
+  # ───────────────────────────────────────────────────────────────────────────
+  build-web:
+    name: Build (web)
+    needs: setup
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Restore pnpm store
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: pnpm-store-${{ runner.os }}-
+
+      - name: Restore Next.js build cache
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          # .next/cache is used for incremental compilation; apps/web/.next/cache
+          # is the Next 15 location in this monorepo.
+          path: |
+            apps/web/.next/cache
+            .turbo
+          key: nextjs-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build web
+        run: pnpm turbo run build --filter=@sso/web --cache-dir=.turbo
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: web-next-${{ github.sha }}
+          path: apps/web/.next
+          retention-days: 7
+          if-no-files-found: error
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Build API (Hono → tsc). Builds on every trigger so PRs catch type-level
+  # build breaks early; the artifact is reused in the deploy workflow.
+  # ───────────────────────────────────────────────────────────────────────────
+  build-api:
+    name: Build (api)
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Restore pnpm store
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: pnpm-store-${{ runner.os }}-
+
+      - name: Restore turbo cache
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: .turbo
+          key: turbo-build-api-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            turbo-build-api-${{ runner.os }}-
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build API
+        run: pnpm turbo run build --filter=@sso/api --cache-dir=.turbo
+
+      - name: Upload API build artifact
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: api-dist-${{ github.sha }}
+          path: apps/api/dist
+          retention-days: 7
+          if-no-files-found: error
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Deploy gate: a single "green" aggregator for branch protection. Requiring
+  # this job in branch protection is easier than listing every matrix leaf.
+  # ───────────────────────────────────────────────────────────────────────────
+  ci-success:
+    name: CI Success
+    if: always()
+    needs: [typecheck, lint, build-api, build-web]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify required jobs succeeded
+        shell: bash
+        run: |
+          # build-web is skipped on PRs by design; treat 'skipped' as pass.
+          results=(
+            "${{ needs.typecheck.result }}"
+            "${{ needs.lint.result }}"
+            "${{ needs.build-api.result }}"
+            "${{ needs.build-web.result }}"
+          )
+          for r in "${results[@]}"; do
+            if [[ "$r" != "success" && "$r" != "skipped" ]]; then
+              echo "::error::One or more CI jobs failed: ${results[*]}"
+              exit 1
+            fi
+          done
+          echo "All required CI jobs passed."
+
+      - name: Post deploy-links comment (main only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const sha = context.sha.substring(0, 7);
+            const body = [
+              `CI green on \`${sha}\`.`,
+              ``,
+              `Deployment workflow \`deploy.yml\` will publish:`,
+              `- Web  -> Vercel (omnios-web)`,
+              `- API  -> Fly.io (omnios-api, regions: iad, lhr, sin)`,
+              ``,
+              `Track the deploy run at: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions`,
+            ].join('\n');
+            // Attach as a commit comment; PRs are excluded by the outer `if`.
+            await github.rest.repos.createCommitComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+              body,
+            });

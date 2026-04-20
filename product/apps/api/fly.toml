@@ -1,0 +1,113 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Fly.io configuration for the OmniOS Hono API.
+#
+# Docs: https://fly.io/docs/reference/configuration/
+#
+# Deploy:
+#   cd apps/api
+#   flyctl deploy --remote-only
+#
+# Secrets are NEVER inlined here. Set them out-of-band:
+#   flyctl secrets set DATABASE_URL=... OMNIOS_JWT_PRIVATE_KEY=... \
+#     OMNIOS_JWT_PUBLIC_KEY=... UPSTASH_REDIS_REST_URL=... \
+#     UPSTASH_REDIS_REST_TOKEN=... STRIPE_SECRET_KEY=... \
+#     STRIPE_WEBHOOK_SECRET=... ANTHROPIC_API_KEY=... ALLOWED_ORIGIN=...
+# ─────────────────────────────────────────────────────────────────────────────
+
+app = "omnios-api"
+
+# Primary region: US-East. Put the primary close to the Postgres primary to
+# minimise write latency. Read-replicas can front the other regions later.
+primary_region = "iad"
+
+# Kill processes cleanly before Fly force-terminates; gives Hono 5s to drain
+# in-flight requests on rolling deploy.
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+# ─── Build ──────────────────────────────────────────────────────────────────
+[build]
+  dockerfile = "./Dockerfile"
+
+# ─── Runtime env (non-secret, shipped in image metadata) ────────────────────
+[env]
+  NODE_ENV = "production"
+  PORT = "3001"
+  # Pino respects LOG_LEVEL; info is the right default for prod.
+  LOG_LEVEL = "info"
+
+# ─── Public HTTP service ─────────────────────────────────────────────────────
+# Internal port 3001 (matches Hono listener in src/index.ts).
+# External 80/443 auto-upgrade to HTTPS via Fly's edge.
+[http_service]
+  internal_port = 3001
+  force_https = true
+  # min_machines_running = 1 keeps at least one VM hot per configured region,
+  # which trades a few dollars/mo for zero cold-start latency on /health.
+  min_machines_running = 1
+  auto_start_machines = true
+  auto_stop_machines = "stop"
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    # soft_limit triggers scale-out before hard_limit begins queueing.
+    soft_limit = 200
+    hard_limit = 250
+
+  # Liveness + readiness check. Fly polls this every 30s; 3 consecutive
+  # failures mark the machine unhealthy and remove it from LB rotation.
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/health"
+    protocol = "http"
+    tls_skip_verify = false
+
+# ─── Compute (VM sizing) ─────────────────────────────────────────────────────
+# shared-cpu-1x @ 256mb is the cheapest paid tier on Fly and matches the
+# $60-90/mo infra budget. Horizontal scale handles load; vertical scale-up is
+# one `flyctl scale vm shared-cpu-2x --memory 512` away if we hit pressure.
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+# ─── Multi-region footprint ──────────────────────────────────────────────────
+# iad: primary   (US East, Ashburn)   - baseline, co-located with Postgres
+# lhr: secondary (Europe, London)     - EU traffic
+# sin: secondary (Asia, Singapore)    - APAC traffic
+[[regions]]
+  code = "iad"
+[[regions]]
+  code = "lhr"
+[[regions]]
+  code = "sin"
+
+# ─── Deploy strategy ─────────────────────────────────────────────────────────
+[deploy]
+  strategy = "rolling"
+  # Fraction of machines the release is allowed to take out of rotation at once.
+  max_unavailable = 0.33
+  # Optional release hook (disabled — db-migrate is handled by deploy.yml):
+  # release_command = "node dist/release-check.js"
+
+# ─── Scaling envelope (documentation) ────────────────────────────────────────
+# Fly's autoscaler lives under [http_service] via auto_start_machines and
+# min_machines_running. The cluster-wide max is set via the CLI once per app:
+#
+#   flyctl scale count 10 --max-per-region 4 -a omnios-api
+#
+# Intended policy:
+#   min_machines_running = 1    (per active region)
+#   max_machines         = 10   (cluster-wide, enforced by CLI above)
+
+# ─── Metrics (reserved; enable once /metrics is wired) ──────────────────────
+# Hono does not ship Prometheus metrics yet. When added, expose /metrics on
+# the same port and uncomment below; Fly's Grafana stack will auto-scrape.
+# [metrics]
+#   port = 3001
+#   path = "/metrics"

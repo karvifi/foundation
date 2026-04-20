@@ -10,6 +10,20 @@ import { executeEngineOperation } from "@sso/connector-runtime";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+// ── Phase 3 re-exports ────────────────────────────────────────────────────
+// Expose the operationStore persistence helpers so external consumers can
+// import them via `@sso/workspace-orchestrator`.
+export {
+  persistOperation,
+  persistOperations,
+  getPersistedOperation,
+  listPersistedOperations,
+  recoverSessions,
+  type RecoveryResult,
+  type RecoveredSession,
+  type ListPersistedOptions,
+} from "./operationStore.js";
+
 export interface WorkspaceSession {
   id: string;
   workspaceId: string;
